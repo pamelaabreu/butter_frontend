@@ -4,6 +4,7 @@ import firebase from './firebase';
 
 // ---- Pages
 import Header from './components/header';
+import Logout from './containers/logout';
 import Login from './containers/login';
 import Signup from './containers/signup';
 
@@ -39,6 +40,7 @@ class App extends Component {
         <h1>HELLO BITCH WASSUs</h1>
         <Route path='/' component={Header} />
         <Switch>
+        <Route path='/logout' exact component={Logout} />
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
         </Switch>
