@@ -11,7 +11,7 @@ export default (props) => {
   
     const loggedOut = <>
         <li>
-            {/* <Link to="/signup">Sign Up</Link> */}
+            <Link to="/signup">Sign Up</Link>
         </li>
         <li>
             <Link to="/login">Login</Link>
