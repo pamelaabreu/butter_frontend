@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 import firebase from './firebase';
 
 // ---- Pages
+import Header from './components/header';
 import Login from './containers/login';
 
 // ---- Context
@@ -35,6 +36,7 @@ class App extends Component {
       
       <AuthContext.Provider value={this.state.user}>
         <h1>HELLO BITCH WASSUs</h1>
+        <Route path='/' component={Header} />
         <Switch>
           <Route path='/login' exact component={Login} />
         </Switch>
