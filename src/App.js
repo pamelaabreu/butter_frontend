@@ -1,23 +1,25 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Firebase from 'firebase';
+import firebase from './firebase';
 
 // ---- Context
 import AuthContext from './contexts/auth';
 
 class App extends Component {
+
   state = {
     user: null
   }
 
   componentDidMount() {
-    this.unsubscribe = Firebase.auth().onAuthStateChanged(user => {
-      if(user) {
+    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if(user){
         this.setState({user});
       }
       else {
-        this.setState({user: null});
+        this.setState({ user: null })
       }
+
     })
   }
 
