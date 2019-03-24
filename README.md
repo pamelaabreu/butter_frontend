@@ -1,4 +1,10 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Cloning/Forking Project
+
+Make sure to replace in config_sample.js with your Firebase Configuration.
+Also in firebase.js, replace the config with:
+```javascript
+import config from './config_sample';
+```
 
 ## Available Scripts
 
