@@ -5,7 +5,7 @@ import AuthContext from '../contexts/auth';
 export default (props) => {
     const loggedIn = <>
         <li>
-        {/* <Link to="/logout">Logout</Link> */}
+        <Link to="/logout">Logout</Link>
         </li>
     </>
   
