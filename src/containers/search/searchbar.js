@@ -4,14 +4,10 @@ import AuthContext from '../../contexts/auth';
 import './searchbar.css';
 
 export default (props) => {
-    const searchBar = <>
-        <div className="searchbarBox searchbarTop">
-            <div className="navbarButton searchBar" contenteditable="true">
-                    <h3></h3>
-            </div>
-        </div>
-    </>
-
+    const searchBar = <div className="searchBar" contenteditable="true">
+                        <h3></h3>
+                    </div>
+                    
     return (
         <AuthContext.Consumer>
             {
