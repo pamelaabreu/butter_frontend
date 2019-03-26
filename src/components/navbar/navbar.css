@@ -1,0 +1,74 @@
+.navbarBox{
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    z-index: 100;
+}
+
+.navbarTop{
+    top: 0;
+    left: 0;
+}
+
+.navbarBottom{
+    bottom: 0;
+    right: 0;
+}
+
+.navbarButton{
+    width: 190px;
+    height: 66px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid firebrick;
+    background-color: rgba(224, 222, 212, .5);
+}
+
+.navbarText{
+    font-family: 'Black Ops One', cursive;
+    font-size: 50px;
+    text-decoration: none;
+}
+
+.navbarText:hover{
+    color: #8f4821;
+    cursor: url(https://static.greatbigcanvas.com/images/square/getty-images/two-small-black-and-white-dalmatian-puppies,1001837.jpg?max=128),auto;
+}
+
+.newsfeed{
+    color: firebrick;
+}
+
+.explore{
+    color: rebeccapurple;
+    border-left: 0;
+}
+
+.search{
+    color: fuchsia;
+    border-left: 0;
+}
+
+.favorites{
+    color: #9c27b0;
+}
+
+.notification{
+    color: fuchsia;
+    border-left: 0;
+}
+
+.plus{
+    right:190px;
+    color: firebrick;
+    border-left: 0;
+}
+
+.user{
+    right: 380px;
+    color: rebeccapurple;
+    border-left: 0;
+}

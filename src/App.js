@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import firebase from './firebase';
+import './app.css';
 
 // ---- Pages
 import Header from './components/header';
+import Navbar from './components/navbar/navbar';
 import Home from './containers/home';
 import Logout from './containers/logout';
 import Login from './containers/login';
@@ -39,14 +41,14 @@ class App extends Component {
     return (
       
       <AuthContext.Provider value={this.state.user}>
-        <h1>HELLO BITCH WASSUs</h1>
-        <Route path='/' component={Header} />
+        <Route path='/' exact component={Navbar} />
+        {/* <Route path='/' component={Header} /> */}
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/logout' exact component={Logout} />
           <Route path='/login' exact component={Login} />
           <Route path='/signup' exact component={Signup} />
-          <Route component={Error404} />
+          {/* <Route component={Error404} /> */}
         </Switch>
       </AuthContext.Provider>
         
