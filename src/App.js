@@ -6,6 +6,7 @@ import './app.css';
 // ---- Pages
 import Header from './components/header';
 import Navbar from './components/navbar/navbar';
+import Searchbar from './containers/search/searchbar';
 import Home from './containers/home';
 import Logout from './containers/logout';
 import Login from './containers/login';
@@ -43,13 +44,16 @@ class App extends Component {
       <AuthContext.Provider value={this.state.user}>
         <Route path='/' exact component={Navbar} />
         {/* <Route path='/' component={Header} /> */}
-        <Switch>
-          <Route path='/' exact component={Home} />
-          <Route path='/logout' exact component={Logout} />
-          <Route path='/login' exact component={Login} />
-          <Route path='/signup' exact component={Signup} />
-          {/* <Route component={Error404} /> */}
-        </Switch>
+          <div style={{marginTop:'190px'}}>
+            <Switch>
+                <Route path='/search' exact component={Searchbar} />
+                <Route path='/' exact component={Home} />
+                <Route path='/logout' exact component={Logout} />
+                <Route path='/login' exact component={Login} />
+                <Route path='/signup' exact component={Signup} />
+                {/* <Route component={Error404} /> */}
+            </Switch>
+          </div>
       </AuthContext.Provider>
         
     );
