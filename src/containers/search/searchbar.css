@@ -1,0 +1,35 @@
+.searchbarBox{
+    display: flex;
+    flex-wrap: wrap;
+    position: fixed;
+    z-index: 100;
+}
+
+.searchbarTop{
+    top: 0;
+    left: 570px;
+}
+
+.navbarButton{
+    width: 190px;
+    height: 66px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border: 1px solid firebrick;
+    background-color: rgba(224, 222, 212, .5);
+    font-family: 'Black Ops One', cursive;
+    font-size: 50px;
+}
+
+.searchBar{
+    width: 380px;
+    padding-left: 10px;
+    border-left: 0;
+    outline-color: firebrick;
+    justify-content: start;
+    color: fuchsia;
+    font-weight: bold;
+}
