@@ -1,13 +1,9 @@
-.searchbarBox{
-    
-}
-
 .searchBar{
     position: fixed;
     z-index: 100;
     top: 0;
     left: 570px;
-    
+
     width: 380px;
     height: 66px;
     padding-left: 10px;
