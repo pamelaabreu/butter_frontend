@@ -40,13 +40,7 @@ export default (props) => {
   return (
         <AuthContext.Consumer>
             {
-                (user) => {
-                    if (user) {
-                    return navbar;
-                    } else {
-                    return <Redirect to='/login'/>
-                    }
-                }
+                (user) => { return navbar }
             }
         </AuthContext.Consumer>
   )
