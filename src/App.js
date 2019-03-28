@@ -44,7 +44,7 @@ class App extends Component {
       <AuthContext.Provider value={this.state.user}>
         <Route path='/' component={Navbar} />
         {/* <Route path='/' component={Header} /> */}
-          <div style={{marginTop:'190px'}}>
+          <div >
             <Switch>
                 <Route path='/search' exact component={Searchbar} />
                 <Route path='/' exact component={Home} />

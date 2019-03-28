@@ -3,6 +3,8 @@ import { Redirect } from 'react-router-dom';
 import AuthContext from '../../contexts/auth';
 import './searchbar.css';
 
+import SearchResults from '../searchResults/searchResults';
+
 export default class Searchbar extends React.Component {
 
     state = {
@@ -19,7 +21,7 @@ export default class Searchbar extends React.Component {
             <>
                 <input className="searchBar" name="input"  onChange={this.handleChange} onKeyDown={this.handleSubmit}/>
                 {this.state.toggle ?
-                    <h1>{this.state.input}</h1>
+                    <SearchResults input={this.state.input} />
                     :
                     null
                 
