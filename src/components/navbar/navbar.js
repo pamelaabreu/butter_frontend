@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AuthContext from '../../contexts/auth';
 import './navbar.css';
 
@@ -40,7 +40,7 @@ export default (props) => {
   return (
         <AuthContext.Consumer>
             {
-                (user) => { return navbar }
+                (user) =>  user ? navbar : null
             }
         </AuthContext.Consumer>
   )
