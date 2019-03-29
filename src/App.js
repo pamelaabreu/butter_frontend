@@ -8,7 +8,7 @@ import Header from './components/header';
 import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
-import Home from './containers/home';
+import Home from './containers/home/home';
 import Logout from './containers/logout';
 import Login from './containers/login';
 import Signup from './containers/signup';
