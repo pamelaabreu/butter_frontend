@@ -40,7 +40,7 @@ export default (props) => {
   return (
         <AuthContext.Consumer>
             {
-                (user) => { return navbar }
+                (user) =>  user ? navbar : null
             }
         </AuthContext.Consumer>
   )
