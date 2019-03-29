@@ -10,7 +10,7 @@ import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
 import Home from './containers/home/home';
 import Logout from './containers/logout';
-import Login from './containers/login';
+import Login from './containers/login/login';
 import Signup from './containers/signup';
 import Error404 from './components/error404';
 
