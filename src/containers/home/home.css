@@ -6,3 +6,47 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
+
+.welcomeBox{
+    width: 500px;
+    position: absolute;
+    top: 200px;
+    left: 300px;
+    border: 1px solid #d4d0fb;
+    background-color: #883ab78a;
+    color: #d4d0fb;
+}
+
+.welcomeTitle{
+    margin: 20px;
+    margin-bottom: 0;
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+    text-decoration: none;
+}
+
+.welcomeInfoBox{
+    margin: 10px;
+    margin-top: 0;
+    padding: 10px;
+    font-size: 30px; 
+}
+
+.signUpButton{
+    margin: 10px;
+    margin-left: 0;
+    width: 122px;   
+}
+
+.signUpButtonText{
+    font-size: 30px;
+    text-decoration: none;
+    color: #FFC107;
+    transition: .2s ease-in-out;
+}
+
+.signUpButtonText:hover{
+    color: firebrick;
+    cursor: url('../../assets/love_email.png'), auto;
+}
+

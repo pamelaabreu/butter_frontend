@@ -8,15 +8,17 @@ export default class Home extends React.Component {
   render() {
     const welcome = <>
       <div className='homeBackground'>
-        <div>
-          <h1>butter</h1>
-          <div>
+        <div className='welcomeBox'>
+          <h1 className='welcomeTitle'>butter</h1>
+          <div className='welcomeInfoBox'>
             <p>
-              A place to safely share open and honest confessions.
-              Sign up if you want to hear and speak about sex, shame, and insecurities.
+              A place to safely share honest confessions about sex, shame, and insecurities.
             </p>
-            <Link to="/signup">Sign Up</Link>
-            <Link to="/login">Login</Link>
+            <div className='signUpButton'>
+              <Link className='signUpButtonText' to="/signup">Sign Up</Link>
+            </div>
+            
+            {/* <Link to="/login">Login</Link> */}
           </div>
         </div>
       </div>
