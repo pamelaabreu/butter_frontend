@@ -50,3 +50,16 @@
     cursor: url('../../assets/love_email.png'), auto;
 }
 
+.loginBox{
+    width: 300px;
+    padding: 10px;
+    padding-left: 90px;
+    position: absolute;
+    top: 280px;
+    left: 750px;
+    border: 1px solid #d4d0fb;
+    background-color: firebrick;
+    color: #d4d0fb;
+    font-size: 30px;
+}
+

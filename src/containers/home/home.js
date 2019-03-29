@@ -17,9 +17,11 @@ export default class Home extends React.Component {
             <div className='signUpButton'>
               <Link className='signUpButtonText' to="/signup">Sign Up</Link>
             </div>
-            
-            {/* <Link to="/login">Login</Link> */}
           </div>
+        </div>
+        <div className='loginBox'>
+          <p>Already a Member?</p>
+          <Link to="/login">Login</Link>
         </div>
       </div>
     </>
