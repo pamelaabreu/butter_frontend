@@ -5,13 +5,18 @@ import { Redirect, Link } from 'react-router-dom';
 export default class Home extends React.Component {
   
   render() {
-    const loggedOut = <>
-        <li>
-            <Link to="/signup">Sign Up</Link>
-        </li>
-        <li>
-            <Link to="/login">Login</Link>
-        </li>
+    const welcome = <>
+      <div>
+        <h1>butter</h1>
+        <div>
+          <p>
+            A place to safely share open and honest confessions.
+            Sign up if you want to hear and speak about sex, shame, and insecurities.
+          </p>
+          <Link to="/signup">Sign Up</Link>
+          <Link to="/login">Login</Link>
+        </div>
+      </div>
     </>
 
     return (
@@ -24,7 +29,7 @@ export default class Home extends React.Component {
               <h4>Your ID is:{user.uid} </h4>
             </>
             } else {
-              return loggedOut
+              return welcome
             }
           }
         }
