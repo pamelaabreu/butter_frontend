@@ -5,6 +5,7 @@ import './app.css';
 
 // ---- Pages
 import Header from './components/header';
+import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
 import Home from './containers/home';
@@ -47,6 +48,7 @@ class App extends Component {
           <div >
             <Switch>
                 <Route path='/search' exact component={Searchbar} />
+                <Route path='/user/:id' exact component={UserProfile} />
                 <Route path='/' exact component={Home} />
                 <Route path='/logout' exact component={Logout} />
                 <Route path='/login' exact component={Login} />
