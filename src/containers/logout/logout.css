@@ -1,0 +1,45 @@
+.logoutTitle{
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+    text-decoration: none;
+    color: #d4d0fb;
+    width: 20%;
+    position: absolute;
+    top: 300px;
+    left: 200px;
+}
+
+@media (width: 320px){
+    .logoutTitle{
+        top: 220px;
+        left: 40px;
+    }
+}
+
+@media (width: 360px){
+    .logoutTitle{
+        top: 300px;
+        left: 50px;
+    }
+}
+
+@media (width: 375px){
+    .logoutTitle{
+        top: 300px;
+        left: 50px;
+    }
+}
+
+@media (width: 411px){
+    .logoutTitle{
+        top: 350px;
+        left: 50px;
+    }
+}
+
+@media (width: 414px){
+    .logoutTitle{
+        top: 390px;
+        left: 50px;
+    }
+}
