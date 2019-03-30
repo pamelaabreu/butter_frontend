@@ -1,0 +1,138 @@
+.loginBackground{
+    width: 100%;
+    min-height: 710px;
+    padding-top: 200px;
+
+    background: linear-gradient(270deg, rebeccapurple, fuchsia);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 30s ease infinite;
+    -moz-animation: AnimationName 30s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.loginBox{
+    display: flex;
+    flex-wrap: wrap;
+    width: 50%;
+    margin: 0 auto;
+    border: 1px solid #d4d0fb;
+    color: #d4d0fb;
+}
+
+.loginLeft{
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+.loginRight{
+    padding: 20px;
+    flex: 1;
+    justify-content: center;
+    align-items: center;
+    border-left:1px solid #d4d0fb;
+}
+
+.loginFlex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    padding: 10px;
+    align-items: center;
+}
+
+.loginTitle{
+    margin: 20px;
+    margin-bottom: 0;
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+    text-decoration: none;
+}
+
+.loginInputTitle{
+    font-size: 25px; 
+}
+
+.loginInput{
+    padding: 10px;
+    color: #d3d0fb;
+    border: 0;
+    font-size: 25px;
+    outline-color: #d3d0fb;
+    background-color: #d3d0fb00;
+    font-family: serif;
+    background-color: transparent;
+}
+
+.loginInput:-webkit-autofill,
+.loginInput:-webkit-autofill:focus,
+.loginInput:-webkit-autofill:hover,
+.loginInput:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+}
+
+.loginInput::placeholder{
+    color: #d3d0fb;
+    background-color: #d3d0fb00;
+}
+
+.loginInput:-ms-input-placeholder{
+    color: #d3d0fb;
+    background-color: #d3d0fb00;
+}
+
+.loginError{
+    font-size: 15px;
+    color: black;
+}
+
+.loginButton{
+    margin: 10px;
+    margin-left: 0;
+    width: 122px;
+    border: none;
+    background-color: none;
+    background: none;   
+}
+
+.loginButton:hover{
+    cursor: pointer;
+    color: firebrick;
+}
+
+.loginButtonText{
+    font-size: 25px;
+    font-family: serif;
+    text-decoration: none;
+    color: #FFC107;
+    transition: .2s ease-in-out;
+    padding-left: 45px;
+}
+
+.loginHomeButton{
+    position: absolute;
+    top: 30px;
+    right: 50px;
+
+    font-size: 25px;
+    font-family: serif;
+    text-decoration: none;
+    color: #FFC107;
+    transition: .2s ease-in-out;
+    padding-left: 45px;
+}
+
+.loginHomeButton:hover{
+    color: firebrick;
+}
