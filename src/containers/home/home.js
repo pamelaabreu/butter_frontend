@@ -14,8 +14,8 @@ export default class Home extends React.Component {
             <p>
               A place to safely share honest confessions about sex, shame, and insecurities.
             </p>
-            <div className='signUpButton'>
-              <Link className='signUpButtonText' to="/signup">Sign Up</Link>
+            <div className='homeSignUpButton'>
+              <Link className='homeSignUpButtonText' to="/signup">Sign Up</Link>
             </div>
           </div>
         </div>

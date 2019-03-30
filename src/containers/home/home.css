@@ -32,20 +32,22 @@
     font-size: 30px; 
 }
 
-.signUpButton{
+.homeSignUpButton{
     margin: 10px;
     margin-left: 0;
-    width: 122px;   
+    width: 122px;
+    background-color: none;
+    border: none;   
 }
 
-.signUpButtonText{
+.homeSignUpButtonText{
     font-size: 30px;
     text-decoration: none;
     color: #FFC107;
     transition: .2s ease-in-out;
 }
 
-.signUpButtonText:hover{
+.homeSignUpButtonText:hover{
     color: firebrick;
     cursor: url('../../assets/love_email.png'), auto;
 }
