@@ -16,14 +16,18 @@ export default class Signup extends React.Component {
     error: ''
   }
 
-  // validateForms = () => {
-  //   const {firstname, username, birthday, email, password}
-  //   return 
-  // }
+  validateForms = () => {
+    const {firstname, username, birthday, email, password} = this.state;
+    return (firstname.length > 0 && username.length > 0 )
+  }
 
   handleChange = (e) => {
-    console.log(e.target.state, e.target.value)
-    this.setState({ [e.target.name]: e.target.value });
+    if (e.target.name === 'joiningReason'){
+      this.setState({ [e.target.name]: e.target.value });
+    } else {
+      this.setState({ [e.target.name]: e.target.value.trim() });
+    }
+    
   }
 
   handleSubmit = (e) => {
