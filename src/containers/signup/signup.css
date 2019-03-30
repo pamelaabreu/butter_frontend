@@ -1,0 +1,45 @@
+.signupRight{
+    overflow-y: scroll;
+    height: 300px;
+}
+
+.signupInput{
+    padding: 10px;
+    padding-left: 20px; 
+    color: #E0DED4;
+    border: 0;
+    font-size: 25px;
+    outline-color: #d3d0fb;
+    background-color: #d3d0fb00;
+    font-family: serif;
+    background-color: transparent;
+}
+
+.signupInput:-webkit-autofill,
+.signupInput:-webkit-autofill:focus,
+.signupInput:-webkit-autofill:hover,
+.signupInput:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+}
+
+.signupInput::placeholder{
+    color: #E0DED4;
+    background-color: #d3d0fb00;
+}
+
+.signupInput:-ms-input-placeholder{
+    color: #E0DED4;
+    background-color: #d3d0fb00;
+}
+
+.signupButton{
+    background: 0;
+    border: 0;
+    font-family: serif;
+}
+
+.signupError{
+    position: absolute;
+    top: 180px;
+    left: 705px;
+}
