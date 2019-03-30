@@ -16,7 +16,13 @@ export default class Signup extends React.Component {
     error: ''
   }
 
+  // validateForms = () => {
+  //   const {firstname, username, birthday, email, password}
+  //   return 
+  // }
+
   handleChange = (e) => {
+    console.log(e.target.state, e.target.value)
     this.setState({ [e.target.name]: e.target.value });
   }
 
@@ -27,6 +33,10 @@ export default class Signup extends React.Component {
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then((response) => {
         console.log('Returns: ', response);
+        //Promise function to upload file
+        //Return the promise
+        //Then url promise axios request
+        // pass token through header
       })
       .catch(err => {
         const { message } = err;
@@ -35,6 +45,7 @@ export default class Signup extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     const { email, password, error, firstname, username, birthday, joiningReason } = this.state;
     const displayError = error === '' ? '' : <p className='loginError signupError' role="alert">{error}</p>
     const displayForm = <div className='loginBackground'>
@@ -42,31 +53,38 @@ export default class Signup extends React.Component {
         <div className='loginLeft'>
           <h1 className='loginTitle'>Signup</h1>
         </div>
+
         <div className='loginRight signupRight'>
           <div className='loginFlex'>
-            <label className='signupInputTitle'>Name</label>
+            <label className='signupInputTitle'>*First Name</label>
             <input className='signupInput' placeholder="Enter name" value={firstname} name='firstname' onChange={this.handleChange} />
           </div>
+
           <div className='loginFlex'>
-            <label className='signupInputTitle'>Username</label>
+            <label className='signupInputTitle'>*Username</label>
             <input className='signupInput' placeholder="Enter username" value={username} name='username' onChange={this.handleChange} />
           </div>
+
           <div className='loginFlex'>
-            <label className='signupInputTitle'>Email</label>
+            <label className='signupInputTitle'>*Email</label>
             <input className='signupInput' placeholder="Enter email" value={email} name='email' onChange={this.handleChange} />
           </div>
+
           <div className='loginFlex'>
-            <label className='signupInputTitle'>Password</label>
+            <label className='signupInputTitle'>*Password</label>
             <input className='signupInput' placeholder="Enter password" value={password} name='password' onChange={this.handleChange} />
           </div>
+
           <div className='loginFlex'>
-            <label className='signupInputTitle'>Birthday</label>
-            <input className='signupInput' placeholder="Enter birthday" value={birthday} name='birthday' onChange={this.handleChange} />
+            <label className='signupInputTitle'>*Birthday</label>
+            <input className='signupInput' type='date' placeholder="Enter birthday" value={birthday} name='birthday' onChange={this.handleChange} />
           </div>
+
           <div className='loginFlex'>
             <label className='signupInputTitle'>Why are you joining?</label>
             <input className='signupInput' placeholder="Reason" value={joiningReason} name='joiningReason' onChange={this.handleChange} />
           </div>
+
           <button type="submit" className='signupButton homeSignUpButtonText homeSignUpButton' onClick={this.handleSubmit}>Sign Up</button>
         </div>
 
