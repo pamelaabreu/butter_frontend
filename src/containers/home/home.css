@@ -50,16 +50,37 @@
     cursor: url('../../assets/love_email.png'), auto;
 }
 
-.loginBox{
-    width: 300px;
+.homeLoginBox{
+    width: 150px;
     padding: 10px;
-    padding-left: 90px;
     position: absolute;
-    top: 280px;
-    left: 750px;
+    right: 520px;
+    top: 290px;
     border: 1px solid #d4d0fb;
-    background-color: firebrick;
     color: #d4d0fb;
     font-size: 30px;
+
+    background: linear-gradient(270deg, #ffe300, #ff00f5, #0027ff);
+    background-size: 600% 600%;
+
+    -webkit-animation: AnimationName 59s ease infinite;
+    -moz-animation: AnimationName 59s ease infinite;
+    animation: AnimationName 59s ease infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
 }
 
