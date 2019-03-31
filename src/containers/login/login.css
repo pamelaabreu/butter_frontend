@@ -1,7 +1,8 @@
 .loginBackground{
     width: 100%;
-    min-height: 710px;
+    min-height: 720px;
     padding-top: 200px;
+    padding-bottom: 10px;
 
     background: linear-gradient(270deg, rebeccapurple, fuchsia, #3d3b89);
     background-size: 600% 600%;
@@ -141,4 +142,18 @@
 
 .loginHomeButton:hover{
     color: firebrick;
+}
+
+@media (max-width:1244px){
+    .loginRight{
+        border-left:0;
+    }
+    
+}
+
+@media (min-width:1245px) and (max-width:1246px){
+    .loginRight{
+        padding-left: 19px;
+    }
+    
 }
