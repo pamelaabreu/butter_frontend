@@ -9,93 +9,109 @@ export default class Signup extends React.Component {
   state = {
     firstname: '',
     username: '',
-    birthday:'',
+    birthday: '',
     email: '',
     password: '',
     joiningReason: '',
+    firebaseError: '',
     error: ''
   }
 
   validateForms = () => {
-    const {firstname, username, birthday, email, password} = this.state;
-    return (firstname.length > 0 && username.length > 0 )
+    const { firstname, username, birthday } = this.state;
+
+    return firstname.length > 0 && username.length > 0 && birthday.length > 0;
   }
 
-  handleChange = (e) => {
-    if (e.target.name === 'joiningReason'){
-      this.setState({ [e.target.name]: e.target.value });
-    } else {
-      this.setState({ [e.target.name]: e.target.value.trim() });
-    }
-    
-  }
+  handleChange = (e) => {this.setState({ [e.target.name]: e.target.value.trim() })}
 
   handleSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password } = this.state;
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((response) => {
-        console.log('Returns: ', response);
-        //Promise function to upload file
-        //Return the promise
-        //Then url promise axios request
-        // pass token through header
-      })
-      .catch(err => {
-        const { message } = err;
-        this.setState({ error: message });
-      })
+    if(this.validateForms()){
+      const { email, password } = this.state;
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+        .then((response) => {
+          console.log('Returns: ', response);
+          //Promise function to upload file
+          //Return the promise
+          //Then url promise axios request
+          // pass token through header
+        })
+        .catch(err => {
+          this.setState({ firebaseError: err });
+        })
+
+    } else {
+      this.setState({ error: 'Please fill out all required field.' })
+    }
+
+  }
+
+  componentDidUpdate(p, prevState) {
+    // console.log('Previous State: ', prevState);
+    // console.log('Current State', this.state);
   }
 
   render() {
-    console.log(this.state)
-    const { email, password, error, firstname, username, birthday, joiningReason } = this.state;
-    const displayError = error === '' ? '' : <p className='loginError signupError' role="alert">{error}</p>
+
+    const { email, password, error, firstname, username, birthday, joiningReason, firebaseError } = this.state;
+    const displayFirebaseError = firebaseError === '' ? '' : <p className='loginError signupError' role="alert">{error}</p>
     const displayForm = <div className='loginBackground'>
+      {displayFirebaseError}
+      {error ? <h1>{error}</h1> : null}
       <div className='loginBox'>
         <div className='loginLeft'>
           <h1 className='loginTitle'>Signup</h1>
         </div>
 
         <div className='loginRight signupRight'>
-          <div className='loginFlex'>
-            <label className='signupInputTitle'>*First Name</label>
-            <input className='signupInput' placeholder="Enter name" value={firstname} name='firstname' onChange={this.handleChange} />
+          <div className='loginFlex'> 
+            {
+             firstname.isError ?  
+             <label style={{ color: 'red' }} className='signupInputTitle'>*First Name</label> 
+             : <label className='signupInputTitle'>*First Name</label>
+            }
+            <input className='signupInput' placeholder="Enter name" name='firstname' onChange={this.handleChange} />
           </div>
 
           <div className='loginFlex'>
             <label className='signupInputTitle'>*Username</label>
-            <input className='signupInput' placeholder="Enter username" value={username} name='username' onChange={this.handleChange} />
+            <input className='signupInput' placeholder="Enter username" name='username' onChange={this.handleChange} />
           </div>
 
           <div className='loginFlex'>
             <label className='signupInputTitle'>*Email</label>
-            <input className='signupInput' placeholder="Enter email" value={email} name='email' onChange={this.handleChange} />
+            <input className='signupInput' placeholder="Enter email" name='email' onChange={this.handleChange} />
           </div>
 
           <div className='loginFlex'>
             <label className='signupInputTitle'>*Password</label>
-            <input className='signupInput' placeholder="Enter password" value={password} name='password' onChange={this.handleChange} />
+            <input className='signupInput' type='password' placeholder="Enter password" name='password' onChange={this.handleChange} />
           </div>
 
           <div className='loginFlex'>
-            <label className='signupInputTitle'>*Birthday</label>
-            <input className='signupInput' type='date' placeholder="Enter birthday" value={birthday} name='birthday' onChange={this.handleChange} />
+            {
+              birthday.isError ? <label style={{ color: 'red' }} className='signupInputTitle'>*Birthday</label>
+                :
+                <label className='signupInputTitle'>*Birthday</label>
+            }
+
+            <input className='signupInput' type='date' placeholder="Enter birthday" name='birthday' onChange={this.handleChange} />
           </div>
 
           <div className='loginFlex'>
             <label className='signupInputTitle'>Why are you joining?</label>
-            <input className='signupInput' placeholder="Reason" value={joiningReason} name='joiningReason' onChange={this.handleChange} />
+            <input className='signupInput' placeholder="Reason" name='joiningReason' onChange={this.handleChange} />
           </div>
 
-          <button type="submit" className='signupButton homeSignUpButtonText homeSignUpButton' onClick={this.handleSubmit}>Sign Up</button>
+          <button type="submit" className='signupButton' onClick={this.handleSubmit}>Sign Up</button>
         </div>
 
-        {displayError}
-        <Link className='loginHomeButton' to='/'>Home</Link>  
+        
+        <Link className='loginHomeButton' to='/'>Home</Link>
       </div>
-  </div>
+    </div>
 
     return (
       <AuthContext.Consumer>
@@ -109,7 +125,7 @@ export default class Signup extends React.Component {
           }
         }
       </AuthContext.Consumer>
-      
+
     );
   }
 }
