@@ -1,13 +1,15 @@
 .loginBackground{
     width: 100%;
-    min-height: 710px;
+    min-height: 720px;
     padding-top: 200px;
+    padding-bottom: 10px;
 
-    background: linear-gradient(270deg, rebeccapurple, fuchsia);
+    background: linear-gradient(270deg, rebeccapurple, fuchsia, #3d3b89);
     background-size: 600% 600%;
 
-    -webkit-animation: AnimationName 30s ease infinite;
-    -moz-animation: AnimationName 30s ease infinite;
+    -webkit-animation: AnimationName 60s ease infinite;
+    -moz-animation: AnimationName 60s ease infinite;
+    animation: AnimationName 60s ease infinite;
 }
 
 @-webkit-keyframes AnimationName {
@@ -16,6 +18,11 @@
     100%{background-position:0% 50%}
 }
 @-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName { 
     0%{background-position:0% 50%}
     50%{background-position:100% 50%}
     100%{background-position:0% 50%}
@@ -135,4 +142,18 @@
 
 .loginHomeButton:hover{
     color: firebrick;
+}
+
+@media (max-width:1244px){
+    .loginRight{
+        border-left:0;
+    }
+    
+}
+
+@media (min-width:1245px) and (max-width:1246px){
+    .loginRight{
+        padding-left: 19px;
+    }
+    
 }
