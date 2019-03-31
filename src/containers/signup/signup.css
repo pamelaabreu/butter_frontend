@@ -1,13 +1,25 @@
-.signupRight{
-    overflow-y: scroll;
-    height: 300px;
+.signupBox{
+    margin-bottom: 200px;
+}
+
+.signupFlex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.signupRequired{
+    color: firebrick;
+    font-size: 25px;
 }
 
 .signupInput{
+    margin-left: 10px;
     padding: 10px;
-    padding-left: 20px; 
     color: #E0DED4;
     border: 0;
+    border-bottom: 1px solid #d3d0fb;
     font-size: 25px;
     outline-color: #d3d0fb;
     background-color: #d3d0fb00;
@@ -36,10 +48,9 @@
     background: 0;
     border: 0;
     font-family: serif;
+    padding-left: 0;
 }
 
 .signupError{
-    position: absolute;
-    top: 180px;
-    left: 705px;
+   padding-left: 20px;
 }
