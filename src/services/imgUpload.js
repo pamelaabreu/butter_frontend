@@ -1,6 +1,8 @@
 import firebase from '../firebase';
 
-const imageUpload = (file, uid) => {
+const ImageService = {};
+
+ImageService.imageUpload = (file, uid) => {
     const root = firebase.storage().ref();
     const userFolder = root.child(`/${uid}`);
     const newImage = userFolder.child(file.name);
@@ -11,4 +13,4 @@ const imageUpload = (file, uid) => {
     .catch(err => err)
 };
 
-export default {imageUpload};
+export default ImageService;
