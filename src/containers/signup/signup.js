@@ -14,7 +14,9 @@ export default class Signup extends React.Component {
     password: '',
     joiningReason: '',
     firebaseError: '',
-    error: ''
+    error: '',
+    profileImage: '',
+    imgError: ''
   }
 
   validateForms = () => {
@@ -25,7 +27,7 @@ export default class Signup extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
 
-  handleSubmit = (e) => {
+  handleSubmit = e => {
     e.preventDefault();
 
     if(this.validateForms()){
@@ -49,13 +51,29 @@ export default class Signup extends React.Component {
 
   }
 
+  handleFileInput = e => {
+    const firstFile = e.target.files[0];
+    console.log(firstFile)
+    // const root = firebase.storage().ref();
+    // const userFolder = root.child(`/${uid}`);
+    // const newImage = userFolder.child(firstFile.name);
+
+    // newImage.put(firstFile)
+    // .then(snapshot => snapshot.ref.getDownloadURL())
+    // .then(url => this.setState({ profileImage: url }))
+    // .catch(err => this.setState({ imgError: err }))
+  }
+
   render() {
 
-    const { error, firebaseError } = this.state;
+    const { error, firebaseError, imgError } = this.state;
 
-    // JSX DISPLAY FORM 
+    // JSX DISPLAY ERRORS
     const displayFirebaseError = firebaseError === '' ? null : <p className='loginError signupError' role="alert">{firebaseError}</p>
     const displayRequiredError = error === '' ? null : <p className='loginError signupError' role="alert">{error}</p>
+    const displayImgError = imgError === '' ? null : <p className='loginError signupError' role="alert">{imgError}</p>
+    
+    // JSX DISPLAY INPUT FIELDS
     const displayRequiredInputs = ["First Name", "Birthday", "Email", "Username", "Password", ].map((e, i) => {
       if(e === 'First Name'){
         return <div key={i} className='signupFlex'>
@@ -98,6 +116,10 @@ export default class Signup extends React.Component {
       <label className='signupInputTitle'>Why are you joining?</label>
       <input className='signupInput' name='joiningReason' onChange={this.handleChange} />
     </div>
+    const displayProfileImgInput = <div className='signupFlex'>
+        <label className='signupInputTitle'>Profile Image</label>
+        <input className='signupInput signupInputFile' type='file' name='profileImage' onChange={this.handleFileInput} />
+      </div>
 
     const displayForm = <div className='loginBackground'>
       <Link className='loginHomeButton' to='/'>Home</Link>
@@ -110,8 +132,10 @@ export default class Signup extends React.Component {
         <div className='loginRight signupRight'>
           {displayRequiredInputs}
           {displayJoiningInput}
+          {displayProfileImgInput}
           {displayFirebaseError}
           {displayRequiredError}
+          {displayImgError}
 
           <button type="submit" className='loginButton loginButtonText signupButton' onClick={this.handleSubmit}>Sign Up</button>
         </div>
