@@ -15,7 +15,7 @@ export default class Signup extends React.Component {
     joiningReason: '',
     firebaseError: '',
     error: '',
-    profileImage: '',
+    profileImage: {},
     imgError: ''
   }
 
@@ -27,14 +27,16 @@ export default class Signup extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
 
+  handleFileInput = e => this.setState({ [e.target.name]: e.target.files[0] })
+
   handleSubmit = e => {
     e.preventDefault();
 
     if(this.validateForms()){
-      const { email, password } = this.state;
+      const { email, password, profileImage } = this.state;
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then((response) => {
-          console.log('Returns: ', response);
+          console.log('Returns: ', response, response.user.uid);
           //Promise function to upload file
           //Return the promise
           //Then url promise axios request
@@ -51,18 +53,7 @@ export default class Signup extends React.Component {
 
   }
 
-  handleFileInput = e => {
-    const firstFile = e.target.files[0];
-    console.log(firstFile)
-    // const root = firebase.storage().ref();
-    // const userFolder = root.child(`/${uid}`);
-    // const newImage = userFolder.child(firstFile.name);
-
-    // newImage.put(firstFile)
-    // .then(snapshot => snapshot.ref.getDownloadURL())
-    // .then(url => this.setState({ profileImage: url }))
-    // .catch(err => this.setState({ imgError: err }))
-  }
+  
 
   render() {
 
