@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../firebase';
 import AuthContext from '../../contexts/auth';
+import ImageService from '../../services/imgUpload';
 import { Redirect, Link } from 'react-router-dom';
 import './signup.css';
 
@@ -34,14 +35,11 @@ export default class Signup extends React.Component {
 
     if(this.validateForms()){
       const { email, password, profileImage } = this.state;
+
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((response) => {
-          console.log('Returns: ', response, response.user.uid);
-          //Promise function to upload file
-          //Return the promise
-          //Then url promise axios request
-          // pass token through header
-        })
+        .then(response => response.user.uid)
+        .then(uid => ImageService.imageUpload(profileImage, uid))
+        .then(url => console.log(url))
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });
