@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from '../../firebase';
 import AuthContext from '../../contexts/auth';
+import ImageService from '../../services/imgUpload';
 import { Redirect, Link } from 'react-router-dom';
 import './signup.css';
 
@@ -14,7 +15,9 @@ export default class Signup extends React.Component {
     password: '',
     joiningReason: '',
     firebaseError: '',
-    error: ''
+    error: '',
+    profileImage: {},
+    imgError: ''
   }
 
   validateForms = () => {
@@ -25,19 +28,18 @@ export default class Signup extends React.Component {
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
 
-  handleSubmit = (e) => {
+  handleFileInput = e => this.setState({ [e.target.name]: e.target.files[0] })
+
+  handleSubmit = e => {
     e.preventDefault();
 
     if(this.validateForms()){
-      const { email, password } = this.state;
+      const { email, password, profileImage } = this.state;
+
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then((response) => {
-          console.log('Returns: ', response);
-          //Promise function to upload file
-          //Return the promise
-          //Then url promise axios request
-          // pass token through header
-        })
+        .then(response => response.user.uid)
+        .then(uid => ImageService.imageUpload(profileImage, uid))
+        .then(url => console.log(url))
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });
@@ -49,13 +51,18 @@ export default class Signup extends React.Component {
 
   }
 
+  
+
   render() {
 
-    const { error, firebaseError } = this.state;
+    const { error, firebaseError, imgError } = this.state;
 
-    // JSX DISPLAY FORM 
+    // JSX DISPLAY ERRORS
     const displayFirebaseError = firebaseError === '' ? null : <p className='loginError signupError' role="alert">{firebaseError}</p>
     const displayRequiredError = error === '' ? null : <p className='loginError signupError' role="alert">{error}</p>
+    const displayImgError = imgError === '' ? null : <p className='loginError signupError' role="alert">{imgError}</p>
+    
+    // JSX DISPLAY INPUT FIELDS
     const displayRequiredInputs = ["First Name", "Birthday", "Email", "Username", "Password", ].map((e, i) => {
       if(e === 'First Name'){
         return <div key={i} className='signupFlex'>
@@ -98,6 +105,10 @@ export default class Signup extends React.Component {
       <label className='signupInputTitle'>Why are you joining?</label>
       <input className='signupInput' name='joiningReason' onChange={this.handleChange} />
     </div>
+    const displayProfileImgInput = <div className='signupFlex'>
+        <label className='signupInputTitle'>Profile Image</label>
+        <input className='signupInput signupInputFile' type='file' name='profileImage' onChange={this.handleFileInput} />
+      </div>
 
     const displayForm = <div className='loginBackground'>
       <Link className='loginHomeButton' to='/'>Home</Link>
@@ -110,8 +121,10 @@ export default class Signup extends React.Component {
         <div className='loginRight signupRight'>
           {displayRequiredInputs}
           {displayJoiningInput}
+          {displayProfileImgInput}
           {displayFirebaseError}
           {displayRequiredError}
+          {displayImgError}
 
           <button type="submit" className='loginButton loginButtonText signupButton' onClick={this.handleSubmit}>Sign Up</button>
         </div>
