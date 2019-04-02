@@ -9,9 +9,9 @@ import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
 import Home from './containers/home/home';
-import Logout from './containers/logout/logout';
+import Logout from './containers/logout';
 import Login from './containers/login/login';
-import Signup from './containers/signup/signup';
+import Signup from './containers/signup';
 import Error404 from './components/error404';
 
 // ---- Context
@@ -20,23 +20,32 @@ import AuthContext from './contexts/auth';
 class App extends Component {
 
   state = {
-    user: null
+    user: null,
+    token: null
   }
 
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if(user){
-        this.setState({user});
+        this.setState({user}, () => {
+          this.getFirebaseIdToken();
+        })
       }
       else {
         this.setState({ user: null })
       }
 
-    })
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
+  }
+
+  getFirebaseIdToken () {
+    firebase.auth().currentUser.getIdToken(false)
+    .then(token => this.setState({ token }))
+    .catch(err => this.setState({ token: null }))
   }
 
   render() {
