@@ -42,7 +42,7 @@ class App extends Component {
     this.unsubscribe();
   }
 
-  handleSignUp = dbUid => {
+  updateDbUid = dbUid => {
     this.setState({ dbUid });
   }
 xs
@@ -55,7 +55,7 @@ xs
   render() {
     return (
       
-      <AuthContext.Provider value={{user:this.state.user, token: this.state.token, dbUid: this.state.dbUid,  handleSignUp:this.handleSignUp}}>
+      <AuthContext.Provider value={{ user:this.state.user, token: this.state.token, dbUid: this.state.dbUid,   updateDbUid:this. updateDbUid }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
