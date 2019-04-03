@@ -9,9 +9,9 @@ import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
 import Home from './containers/home/home';
-import Logout from './containers/logout';
+import Logout from './containers/logout/logout';
 import Login from './containers/login/login';
-import Signup from './containers/signup';
+import Signup from './containers/signup/signup';
 import Error404 from './components/error404';
 
 // ---- Context
@@ -21,7 +21,8 @@ class App extends Component {
 
   state = {
     user: null,
-    token: null
+    token: null,
+    dbUid: null
   }
 
   componentDidMount() {
@@ -42,6 +43,10 @@ class App extends Component {
     this.unsubscribe();
   }
 
+  handleSignUp = dbUid => {
+    this.setState({dbUid});
+  }
+
   getFirebaseIdToken () {
     firebase.auth().currentUser.getIdToken(false)
     .then(token => this.setState({ token }))
@@ -51,12 +56,12 @@ class App extends Component {
   render() {
     return (
       
-      <AuthContext.Provider value={this.state.user}>
+      <AuthContext.Provider value={this.state}>
         <Route path='/' component={Navbar} />
         {/* <Route path='/' component={Header} /> */}
           <div >
             <Switch>
-                <Route path='/search' exact component={Searchbar} />
+                <Route path='/search' exact component={Searchbar} handleSignUp={this.handleSignUp}/>
                 <Route path='/user/:id' exact component={UserProfile} />
                 <Route path='/' exact component={Home} />
                 <Route path='/logout' exact component={Logout} />
