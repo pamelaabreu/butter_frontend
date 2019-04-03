@@ -55,7 +55,7 @@ xs
   render() {
     return (
       
-      <AuthContext.Provider value={{ user:this.state.user, token: this.state.token, dbUid: this.state.dbUid,   updateDbUid:this. updateDbUid }}>
+      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, updateDbUid:this.updateDbUid }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
