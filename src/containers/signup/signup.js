@@ -55,9 +55,7 @@ export default class Signup extends React.Component {
           })
         })
         .then(res => res.data.data)
-        .then(data => {
-            this.context. updateDbUid(data);
-        })
+        .then(data => this.context.updateDbUid(data))
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });

@@ -27,7 +27,7 @@ export default class Login extends React.Component {
       .then(uid => {
         return axios.get(`http://localhost:3000/login/${uid}`)
       })
-      .then(res => console.log(res.data.id))
+      .then(res => this.context.updateDbUid(res.data.id))
       .catch(err => {
         const { message } = err;
         this.setState({ error: message });
