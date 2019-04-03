@@ -8,6 +8,8 @@ import './signup.css';
 
 export default class Signup extends React.Component {
 
+  static contextType = AuthContext;
+
   state = {
     birthname: '',
     username: '',
@@ -52,12 +54,11 @@ export default class Signup extends React.Component {
             joining_reason: joiningReason
           })
         })
-        .then(res => res.data)
-        .then(id => {
-            
+        .then(res => res.data.data)
+        .then(data => {
+            this.context. updateDbUid(data);
         })
         .catch(err => {
-          console.log(err)
           const { message } = err;
           this.setState({ firebaseError: message });
         })
