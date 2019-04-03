@@ -24,7 +24,10 @@ export default class Login extends React.Component {
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(response => response.user.uid)
-      .then(uid => {})
+      .then(uid => {
+        return axios.get(`http://localhost:3000/login/${uid}`)
+      })
+      .then(res => console.log(res.data.id))
       .catch(err => {
         const { message } = err;
         this.setState({ error: message });
