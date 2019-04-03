@@ -1,10 +1,12 @@
 import React from 'react';
 import firebase from '../../firebase';
+import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import { Redirect, Link } from 'react-router-dom';
 import './login.css';
 
 export default class Login extends React.Component {
+  static contextType = AuthContext;
 
   state = {
     email: '',
@@ -21,9 +23,8 @@ export default class Login extends React.Component {
 
     const { email, password } = this.state;
     firebase.auth().signInWithEmailAndPassword(email, password)
-      .then((response) => {
-        console.log('Returns: ', response);
-      })
+      .then(response => response.user.uid)
+      .then(uid => {})
       .catch(err => {
         const { message } = err;
         this.setState({ error: message });
