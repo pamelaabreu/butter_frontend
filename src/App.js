@@ -20,34 +20,48 @@ import AuthContext from './contexts/auth';
 class App extends Component {
 
   state = {
-    user: null
+    user: null,
+    token: null,
+    dbUid: null
   }
 
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if(user){
-        this.setState({user});
+        this.setState({user}, () => {
+          this.getFirebaseIdToken();
+        })
       }
       else {
         this.setState({ user: null })
       }
 
-    })
+    });
   }
 
   componentWillUnmount() {
     this.unsubscribe();
   }
 
+  handleSignUp = dbUid => {
+    this.setState({dbUid});
+  }
+
+  getFirebaseIdToken () {
+    firebase.auth().currentUser.getIdToken(false)
+    .then(token => this.setState({ token }))
+    .catch(err => this.setState({ token: null }))
+  }
+
   render() {
     return (
       
-      <AuthContext.Provider value={this.state.user}>
+      <AuthContext.Provider value={this.state}>
         <Route path='/' component={Navbar} />
         {/* <Route path='/' component={Header} /> */}
           <div >
             <Switch>
-                <Route path='/search' exact component={Searchbar} />
+                <Route path='/search' exact component={Searchbar} handleSignUp={this.handleSignUp}/>
                 <Route path='/user/:id' exact component={UserProfile} />
                 <Route path='/' exact component={Home} />
                 <Route path='/logout' exact component={Logout} />

@@ -8,7 +8,7 @@ import './signup.css';
 export default class Signup extends React.Component {
 
   state = {
-    firstname: '',
+    birthname: '',
     username: '',
     birthday: '',
     email: '',
@@ -21,9 +21,9 @@ export default class Signup extends React.Component {
   }
 
   validateForms = () => {
-    const { firstname, username, birthday } = this.state;
+    const { birthname, username, birthday } = this.state;
 
-    return firstname.length > 0 && username.length > 0 && birthday.length > 0;
+    return birthname.length > 0 && username.length > 0 && birthday.length > 0;
   }
 
   handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
@@ -32,14 +32,19 @@ export default class Signup extends React.Component {
 
   handleSubmit = e => {
     e.preventDefault();
+    const {birthname, username, birthday, email, password, joiningReason, profileImage} = this.state;
+    let firebase_uid = null;
+    let profile_img_url = null;
+   
 
     if(this.validateForms()){
-      const { email, password, profileImage } = this.state;
-
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(response => response.user.uid)
+        .then(response => firebase_uid = response.user.uid)
         .then(uid => ImageService.imageUpload(profileImage, uid))
-        .then(url => console.log(url))
+        .then(url => profile_img_url = url)
+        .then(() => {
+
+        })
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });
@@ -50,9 +55,7 @@ export default class Signup extends React.Component {
     }
 
   }
-
   
-
   render() {
 
     const { error, firebaseError, imgError } = this.state;
@@ -70,7 +73,7 @@ export default class Signup extends React.Component {
           <span className='signupRequired'>* </span> 
           {e}
         </label>
-        <input className='signupInput' type='text' name='firstname' onChange={this.handleChange} />
+        <input className='signupInput' type='text' name='birthname' onChange={this.handleChange} />
       </div>
       } 
       else if(e === 'Birthday'){
@@ -135,7 +138,7 @@ export default class Signup extends React.Component {
     return (
       <AuthContext.Consumer>
         {
-          (user) => {
+          ({user}) => {
             if (user) {
               return <Redirect to='/' />
             } else {
