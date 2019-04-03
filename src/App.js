@@ -4,7 +4,6 @@ import firebase from './firebase';
 import './app.css';
 
 // ---- Pages
-import Header from './components/header';
 import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
@@ -44,7 +43,7 @@ class App extends Component {
   }
 
   handleSignUp = dbUid => {
-    this.setState({dbUid});
+    this.setState({ dbUid });
   }
 
   getFirebaseIdToken () {
@@ -58,10 +57,9 @@ class App extends Component {
       
       <AuthContext.Provider value={this.state}>
         <Route path='/' component={Navbar} />
-        {/* <Route path='/' component={Header} /> */}
           <div >
             <Switch>
-                <Route path='/search' exact component={Searchbar} handleSignUp={this.handleSignUp}/>
+                <Route path='/search' exact component={Searchbar} />
                 <Route path='/user/:id' exact component={UserProfile} />
                 <Route path='/' exact component={Home} />
                 <Route path='/logout' exact component={Logout} />
