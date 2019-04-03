@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import firebase from './firebase';
+import axios from 'axios';
 import './app.css';
 
 // ---- Pages
@@ -23,12 +24,14 @@ class App extends Component {
     user: null,
     token: null,
     dbUid: null,
+    firebaseUid: null,
+    userEmail: null
   }
 
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if(user){
-        this.setState({user}, () => {
+        this.setState({user, firebaseUid: user.uid, userEmail: user.email}, () => {
           this.getFirebaseIdToken();
         })
       }
@@ -43,20 +46,26 @@ class App extends Component {
     this.unsubscribe();
   }
 
-  updateDbUid = dbUid => {
-    this.setState({ dbUid });
+  updateDbUid = dbUid => this.setState({ dbUid })
+
+  getDbUid = () => {
+    axios.get(`http://localhost:3000/login/${this.state.firebaseUid}`)
+      .then(res => this.updateDbUid(res.data.id))
+      .catch(err => this.setState({ dbUid:null }))
   }
 xs
   getFirebaseIdToken () {
     firebase.auth().currentUser.getIdToken(false)
-    .then(token => this.setState({ token }))
+    .then(token => this.setState({ token }, () => {
+      this.getDbUid()
+    }))
     .catch(err => this.setState({ token: null }))
   }
 
   render() {
     return (
       
-      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, updateDbUid:this.updateDbUid }}>
+      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, firebaseUid:this.state.firebaseUid, userEmail: this.state.userEmail, updateDbUid:this.updateDbUid }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
