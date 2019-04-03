@@ -12,6 +12,7 @@ import Logout from './containers/logout/logout';
 import Login from './containers/login/login';
 import Signup from './containers/signup/signup';
 import Error404 from './components/error404';
+import CreatePost from './containers/createPost/createPost';
 
 // ---- Context
 import AuthContext from './contexts/auth';
@@ -65,6 +66,7 @@ xs
                 <Route path='/logout' exact component={Logout} />
                 <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={Signup} />
+                <Route path='/createPost/:id' exact component={CreatePost} />
                 <Route component={Error404} />
             </Switch>
           </div>
