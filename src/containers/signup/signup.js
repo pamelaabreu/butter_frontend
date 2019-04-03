@@ -1,5 +1,6 @@
 import React from 'react';
 import firebase from '../../firebase';
+import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import ImageService from '../../services/imgUpload';
 import { Redirect, Link } from 'react-router-dom';
@@ -34,18 +35,29 @@ export default class Signup extends React.Component {
     e.preventDefault();
     const {birthname, username, birthday, email, password, joiningReason, profileImage} = this.state;
     let firebase_uid = null;
-    let profile_img_url = null;
-   
-
+  
     if(this.validateForms()){
       firebase.auth().createUserWithEmailAndPassword(email, password)
         .then(response => firebase_uid = response.user.uid)
         .then(uid => ImageService.imageUpload(profileImage, uid))
-        .then(url => profile_img_url = url)
-        .then(() => {
-
+        .then(url => url)
+        .then((url) => {
+           return axios.post('http://localhost:3000/user/', {
+            birthname: birthname, 
+            username: username, 
+            email: email, 
+            firebase_uid: firebase_uid, 
+            profile_img: url,
+            birthday: birthday, 
+            joining_reason: joiningReason
+          })
+        })
+        .then(res => res.data)
+        .then(id => {
+            
         })
         .catch(err => {
+          console.log(err)
           const { message } = err;
           this.setState({ firebaseError: message });
         })
