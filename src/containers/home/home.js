@@ -29,7 +29,7 @@ export default class Home extends React.Component {
     return (
       <AuthContext.Consumer>
         {
-          (user) => {
+          ({user}) => {
             if (user) {
               return <>
               <h2>Welcome back, {user.email}</h2>

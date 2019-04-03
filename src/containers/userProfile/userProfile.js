@@ -7,7 +7,7 @@ export default class UserProfile extends React.Component {
         return (
             <AuthContext.Consumer>
                 {
-                    user => user ? <>
+                    ({user}) => user ? <>
                         <div style={{marginTop:'100px'}}>
                             <h2>Hello, {user.email}</h2>
                             <h4>With ID:{user.uid} </h4>

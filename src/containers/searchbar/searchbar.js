@@ -34,7 +34,7 @@ export default class Searchbar extends React.Component {
         return (
             <AuthContext.Consumer>
                 {
-                    (user) => {
+                    ({user}) => {
                         if (user) {
                         return this.searchBar();
                         } else {

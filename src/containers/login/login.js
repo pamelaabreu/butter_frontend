@@ -60,7 +60,7 @@ export default class Login extends React.Component {
     return (
       <AuthContext.Consumer>
         {
-          (user) => {
+          ({user}) => {
             if (user) {
               return <Redirect to='/' />
             } else {
