@@ -21,7 +21,7 @@ class App extends Component {
   state = {
     user: null,
     token: null,
-    dbUid: null
+    dbUid: null,
   }
 
   componentDidMount() {
@@ -45,7 +45,7 @@ class App extends Component {
   handleSignUp = dbUid => {
     this.setState({ dbUid });
   }
-
+xs
   getFirebaseIdToken () {
     firebase.auth().currentUser.getIdToken(false)
     .then(token => this.setState({ token }))
@@ -55,7 +55,7 @@ class App extends Component {
   render() {
     return (
       
-      <AuthContext.Provider value={this.state}>
+      <AuthContext.Provider value={{user:this.state.user, token: this.state.token, dbUid: this.state.dbUid,  handleSignUp:this.handleSignUp}}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
