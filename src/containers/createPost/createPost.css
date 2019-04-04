@@ -1,0 +1,55 @@
+.createPostBox{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+    margin-top: 100px;
+    border: 1px solid black;
+}
+
+.createPostFlex{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.createPostInputTitle{
+    font-size: 25px;
+}
+
+.createPostInput{
+    margin-left: 10px;
+    padding: 10px;
+    color: black;
+    border: 0;
+    border-bottom: 1px solid black;
+    font-size: 25px;
+    outline-color: black;
+    background-color: #d3d0fb00;
+    font-family: serif;
+    background-color: transparent;
+}
+
+.createPostInputFile{
+    width: 100%;
+    align-items: center;
+}
+
+.createPostInput:-webkit-autofill,
+.createPostInput:-webkit-autofill:focus,
+.createPostInput:-webkit-autofill:hover,
+.createPostInput:-webkit-autofill:active {
+    -webkit-transition-delay: 99999s;
+}
+
+.createPostInput::placeholder{
+    color: black;
+    background-color: #d3d0fb00;
+}
+
+.createPostInput:-ms-input-placeholder{
+    color: black;
+    background-color: #d3d0fb00;
+}
