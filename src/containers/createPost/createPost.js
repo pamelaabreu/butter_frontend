@@ -39,15 +39,18 @@ export default class CreatePost extends React.Component {
             <input className='createPostInput createPostInputFile' type='text' name='title' onChange={this.handleChange} />
         </div>
         const displaySummary = <div className='createPostFlex'>
-            {/* <label className='createPostInputTitle'>Write what you want to say...</label> */}
             <form>
                 <textarea className='createPostInput createPostInputSummary' placeholder='Write what you want to say...' onChange={this.handleChange} name='summary' ></textarea>
             </form>
-            {/* <input className='createPostInput createPostInputSummary' placeholder={'Write what you want to say...'} type='text' name='summary' onChange={this.handleChange} /> */}
+        </div>
+        const displayCaption = <div className='createPostFlex'>
+            <form>
+                <textarea className='createPostInput' placeholder='Sum this post in six words...' onChange={this.handleChange} name='caption' ></textarea>
+            </form>
         </div>
         const tagImg = this.state.tags.map((e, i) => {
             return (
-                <div className='dropdown-content' style={{backgroundImage:`url(${e.image_url})`, display:'block', height:'100px', width:'100px', zIndex:'9999'}}>
+                <div className='dropdown-content' key={i} style={{backgroundImage:`url(${e.image_url})`, display:'block', height:'100px', width:'100px', zIndex:'9999'}}>
                     {/* <img src={e.image_url} alt={e.topic_name}/> */}
                     {/* <p className='dropdown-style'>{e.image_url}</p> */}
                 </div>
@@ -75,6 +78,7 @@ export default class CreatePost extends React.Component {
                         </div>
                     </div>
                     {displaySummary}
+                    {displayCaption}
                 </div>
             </div>
         </>
