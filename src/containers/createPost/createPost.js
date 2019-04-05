@@ -11,7 +11,7 @@ export default class CreatePost extends React.Component {
         content_url:{},
         title:'',
         tags:[],
-        tag_id: '',
+        tag_id: 0,
         error: ''
     }
 
@@ -19,12 +19,16 @@ export default class CreatePost extends React.Component {
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
 
+    handleTag = e => this.setState({ tag_id: e })
+
     componentDidMount () {
-        axios.get('')
+        axios.get(`http://localhost:3000/tag/all`)
+        .then(res => this.setState({ tags: res.data }))
+        .catch(err => this.setState({ tags: [] }))
     }
 
     render () {
-        const displayProfileImgInput = <div className='createPostFlex'>
+        const displayPostImgInput = <div className='createPostFlex'>
             <label className='createPostInputTitle'>Post Image</label>
             <input className='createPostInput createPostInputFile' type='file' name='content_url' onChange={this.handleFileInput} />
         </div>
@@ -32,13 +36,43 @@ export default class CreatePost extends React.Component {
             <label className='createPostInputTitle'>Title</label>
             <input className='createPostInput createPostInputFile' type='text' name='title' onChange={this.handleChange} />
         </div>
-        const displayForm = <div className='createPostBox'>
-            {displayProfileImgInput}
-            {displayTitleInput}
-            <div>
-                <h2>Tags</h2>
+        
+        const tagImg = this.state.tags.map((e, i) => {
+            return (
+                <div className='dropdown-content' style={{backgroundImage:`url(${e.image_url})`, display:'block', height:'100px', width:'100px', zIndex:'9999'}}>
+                    {/* <img src={e.image_url} alt={e.topic_name}/> */}
+                    {/* <p className='dropdown-style'>{e.image_url}</p> */}
+                </div>
+            );
+        })
+
+        const tagButtons = this.state.tags.map((e, i) => {
+            return (
+                <>
+                    <div key={i} className='createPostTagButton' style={{padding:'20px', border:'1px solid black'}} onClick={() => this.handleTag(e.id)}>
+                        <p>{e.topic_name}</p>
+                    </div>
+                </>
+            )
+        });
+        
+        
+
+        const displayForm = <>
+            <div style={{position:'relative'}}>
+                <div className='createPostBox'>
+                        {displayPostImgInput}
+                        {displayTitleInput}
+                        <div style={{width:'100%'}}>
+                            <label className='createPostInputTitle'>Choose a Tag</label>
+                            <div className='createPostDropdown'>
+                                {tagButtons}
+                            </div>
+                        </div>
+                    </div>
+                
             </div>
-        </div>
+        </>
 
         return(
             <AuthContext.Consumer>
