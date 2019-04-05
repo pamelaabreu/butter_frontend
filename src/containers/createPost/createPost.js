@@ -12,6 +12,8 @@ export default class CreatePost extends React.Component {
         title:'',
         tags:[],
         tag_id: 0,
+        summary:'',
+        caption: '',
         error: ''
     }
 
@@ -36,7 +38,13 @@ export default class CreatePost extends React.Component {
             <label className='createPostInputTitle'>Title</label>
             <input className='createPostInput createPostInputFile' type='text' name='title' onChange={this.handleChange} />
         </div>
-        
+        const displaySummary = <div className='createPostFlex'>
+            {/* <label className='createPostInputTitle'>Write what you want to say...</label> */}
+            <form>
+                <textarea className='createPostInput createPostInputSummary' placeholder='Write what you want to say...' onChange={this.handleChange} name='summary' ></textarea>
+            </form>
+            {/* <input className='createPostInput createPostInputSummary' placeholder={'Write what you want to say...'} type='text' name='summary' onChange={this.handleChange} /> */}
+        </div>
         const tagImg = this.state.tags.map((e, i) => {
             return (
                 <div className='dropdown-content' style={{backgroundImage:`url(${e.image_url})`, display:'block', height:'100px', width:'100px', zIndex:'9999'}}>
@@ -44,8 +52,7 @@ export default class CreatePost extends React.Component {
                     {/* <p className='dropdown-style'>{e.image_url}</p> */}
                 </div>
             );
-        })
-
+        });
         const tagButtons = this.state.tags.map((e, i) => {
             return (
                 <>
@@ -55,22 +62,20 @@ export default class CreatePost extends React.Component {
                 </>
             )
         });
-        
-        
-
+  
         const displayForm = <>
             <div style={{position:'relative'}}>
                 <div className='createPostBox'>
-                        {displayPostImgInput}
-                        {displayTitleInput}
-                        <div style={{width:'100%'}}>
-                            <label className='createPostInputTitle'>Choose a Tag</label>
-                            <div className='createPostDropdown'>
-                                {tagButtons}
-                            </div>
+                    {displayPostImgInput}
+                    {displayTitleInput}
+                    <div style={{width:'100%'}}>
+                        <label className='createPostInputTitle'>Choose a Tag</label>
+                        <div className='createPostDropdown'>
+                            {tagButtons}
                         </div>
                     </div>
-                
+                    {displaySummary}
+                </div>
             </div>
         </>
 
