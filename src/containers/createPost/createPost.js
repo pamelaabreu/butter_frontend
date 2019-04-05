@@ -17,11 +17,22 @@ export default class CreatePost extends React.Component {
         error: ''
     }
 
-    handleFileInput = e => this.setState({ [e.target.name]: e.target.files[0] })
+    handleFileInput = e => this.setState({ [e.target.name]: e.target.files[0], error:'' })
 
     handleChange = e => this.setState({ [e.target.name]: e.target.value.trim() })
 
     handleTag = e => this.setState({ tag_id: e })
+
+    handleSubmit = e => {
+        e.preventDefault();
+
+        const {content_url, title, tag_id, summary, caption} = this.state;
+        
+        if(content_url){
+            
+            
+        } else this.setState({error: 'Please upload an image to post.'})
+    }
 
     componentDidMount () {
         axios.get(`http://localhost:3000/tag/all`)
@@ -30,6 +41,7 @@ export default class CreatePost extends React.Component {
     }
 
     render () {
+        const displayRequiredError = this.state.error === '' ? null : <p className='createPostInputTitle' role="alert">{this.state.error}</p>
         const displayPostImgInput = <div className='createPostInputBox' style={{border: 0, padding:'0'}}>
             <label className='createPostInputTitle' style={{padding:'0'}}>Upload Image</label>
             <input className='createPostInput createPostInputFile' type='file' name='content_url' onChange={this.handleFileInput} />
@@ -84,6 +96,7 @@ export default class CreatePost extends React.Component {
                             {tagButtons}
                         </div>
                     </div>
+                    {displayRequiredError}
                     <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Sign Up</button>
                 </div>
             </div>
