@@ -53,3 +53,57 @@
     color: black;
     background-color: #d3d0fb00;
 }
+
+.createPostTagButton{
+    padding: 10px;
+}
+
+.createPostTagButton:hover{
+    color: firebrick;
+}
+
+.createPostDropdown{
+    /* position: relative; */
+    /* display: inline-block; */
+    overflow-x: scroll;
+    display: flex;
+}
+
+.createPostDropdown::-webkit-scrollbar { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 170px;
+    top: 20px;
+    background-color: #f1f1f1;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    width: 20px;
+    height: 20px;
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+}
+
+.dropdown-style{
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.createPostDropdown:hover .dropdown-content {display: block;}
+.createPostDropdownn:hover .createPostTagButton {background-color: #3e8e41;}
+
+.displayImg{
+    position: absolute;
+    width: 25%;
+    right: 0;
+    top: 0;
+    background-color: pink;
+    height: 100%;
+}
