@@ -11,7 +11,7 @@ export default class CreatePost extends React.Component {
         content_url:{},
         title:'',
         tags:[],
-        tag_id: 0,
+        tag_id: -1,
         summary:'',
         caption: '',
         error: ''
@@ -30,22 +30,23 @@ export default class CreatePost extends React.Component {
     }
 
     render () {
-        const displayPostImgInput = <div className='createPostFlex'>
-            <label className='createPostInputTitle'>Post Image</label>
+        const displayPostImgInput = <div className='createPostInputBox' style={{border: 0, padding:'0'}}>
+            <label className='createPostInputTitle' style={{padding:'0'}}>Upload Image</label>
             <input className='createPostInput createPostInputFile' type='file' name='content_url' onChange={this.handleFileInput} />
         </div>
-        const displayTitleInput = <div className='createPostFlex'>
-            <label className='createPostInputTitle'>Title</label>
-            <input className='createPostInput createPostInputFile' type='text' name='title' onChange={this.handleChange} />
-        </div>
-        const displaySummary = <div className='createPostFlex'>
+        const displayTitleInput = <div className='createPostInputBox'>
             <form>
-                <textarea className='createPostInput createPostInputSummary' placeholder='Write what you want to say...' onChange={this.handleChange} name='summary' ></textarea>
+                <textarea className='createPostInput' name='title' placeholder='Title' onChange={this.handleChange}></textarea>
             </form>
         </div>
-        const displayCaption = <div className='createPostFlex'>
+        const displaySummary = <div className='createPostInputBox'>
             <form>
-                <textarea className='createPostInput' placeholder='Sum this post in six words...' onChange={this.handleChange} name='caption' ></textarea>
+                <textarea className='createPostInput createPostInputSummary' name='summary' placeholder='Write what you want to say...' onChange={this.handleChange}></textarea>
+            </form>
+        </div>
+        const displayCaption = <div className='createPostInputBox'>
+            <form>
+                <textarea className='createPostInput' name='caption' placeholder='Sum this post in six words...' onChange={this.handleChange}></textarea>
             </form>
         </div>
         const tagImg = this.state.tags.map((e, i) => {
@@ -56,11 +57,15 @@ export default class CreatePost extends React.Component {
                 </div>
             );
         });
-        const tagButtons = this.state.tags.map((e, i) => {
+        const tagButtons = this.state.tags.map((e, i, a) => {
             return (
                 <>
-                    <div key={i} className='createPostTagButton' style={{padding:'20px', border:'1px solid black'}} onClick={() => this.handleTag(e.id)}>
-                        <p>{e.topic_name}</p>
+                    <div key={i} className='createPostTagButton' onClick={() => this.handleTag(e.id)}>
+                       {(this.state.tag_id === i+1) ?    
+                            <p style={{color: 'firebrick'}}>{`{${e.topic_name}}`}</p>
+                                : 
+                            <p>{`{${e.topic_name}}`}</p>
+                        }
                     </div>
                 </>
             )
@@ -71,14 +76,15 @@ export default class CreatePost extends React.Component {
                 <div className='createPostBox'>
                     {displayPostImgInput}
                     {displayTitleInput}
-                    <div style={{width:'100%'}}>
+                    {displaySummary}
+                    {displayCaption}
+                    <div className='createPostFlex createPostInputBox'>
                         <label className='createPostInputTitle'>Choose a Tag</label>
                         <div className='createPostDropdown'>
                             {tagButtons}
                         </div>
                     </div>
-                    {displaySummary}
-                    {displayCaption}
+                    <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Sign Up</button>
                 </div>
             </div>
         </>
