@@ -7,6 +7,7 @@ import { Redirect } from 'react-router-dom';
 import './createPost.css';
 
 export default class CreatePost extends React.Component {
+    static contextType = AuthContext;
 
     state = {
         content_url:{},
@@ -32,7 +33,17 @@ export default class CreatePost extends React.Component {
         if(content_url){
             ImageService.imageUpload(content_url, this.context.firebaseUid)
             .then(url => {
-                console.log(url)
+                return axios.post('http://localhost:3000/post/', {
+                    user_posted_id: this.context.dbUid, 
+                    tag_id,
+                    content_url: url, 
+                    title,
+                    summary,
+                    caption
+                })
+            })
+            .catch(err => {
+                this.setState({error: 'Trouble uploading post. Try Again!'})
             })
             
         } else this.setState({error: 'Please upload an image to post.'})
