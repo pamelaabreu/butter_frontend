@@ -132,11 +132,14 @@
 
 .createPostSubmit:hover{
     cursor: pointer;
+    
     background: linear-gradient(70deg, rebeccapurple, #9c27b0, firebrick);
     background-size: 600% 600%;
     -webkit-animation: AnimationName 3s linear infinite;
     -moz-animation: AnimationName 3s linear infinite;
     animation: AnimationName 3s linear infinite;
+    -webkit-text-fill-color: transparent;
+    -webkit-background-clip: text;
 }
 
 @-webkit-keyframes AnimationName {
