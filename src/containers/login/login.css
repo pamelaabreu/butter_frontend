@@ -4,12 +4,12 @@
     padding-top: 200px;
     padding-bottom: 10px;
 
-    background: linear-gradient(270deg, rebeccapurple, fuchsia, #3d3b89);
+    background: linear-gradient(70deg, rebeccapurple, fuchsia, #3d3b89);
     background-size: 600% 600%;
 
-    -webkit-animation: AnimationName 60s ease infinite;
-    -moz-animation: AnimationName 60s ease infinite;
-    animation: AnimationName 60s ease infinite;
+    -webkit-animation: AnimationName 15s linear infinite;
+    -moz-animation: AnimationName 15s linear infinite;
+    animation: AnimationName 15s linear infinite;
 }
 
 @-webkit-keyframes AnimationName {
