@@ -1,5 +1,4 @@
 import React from 'react';
-import firebase from '../../firebase';
 import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import ImageService from '../../services/imgUpload';
@@ -10,12 +9,12 @@ export default class CreatePost extends React.Component {
     static contextType = AuthContext;
 
     state = {
-        content_url:{},
-        title:'',
+        content_url:null,
+        title:null,
         tags:[],
-        tag_id: -1,
-        summary:'',
-        caption: '',
+        tag_id: null,
+        summary:null,
+        caption: null,
         error: ''
     }
 
@@ -42,6 +41,8 @@ export default class CreatePost extends React.Component {
                     caption
                 })
             })
+            .then(res => res.data.data)
+            .then(data => this.props.history.push(`/viewPost/${data}`))
             .catch(err => {
                 this.setState({error: 'Trouble uploading post. Try Again!'})
             })
@@ -112,6 +113,7 @@ export default class CreatePost extends React.Component {
                         </div>
                     </div>
                     {displayRequiredError}
+                    {/* <Link className='createPostSubmit' to={'/createPost/'+this.context.firebaseUid}>+</Link> */}
                     <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Post</button>
                 </div>
             </div>
