@@ -2,6 +2,7 @@ import React from 'react';
 import firebase from '../../firebase';
 import axios from 'axios';
 import AuthContext from '../../contexts/auth';
+import ImageService from '../../services/imgUpload';
 import { Redirect } from 'react-router-dom';
 import './createPost.css';
 
@@ -29,7 +30,10 @@ export default class CreatePost extends React.Component {
         const {content_url, title, tag_id, summary, caption} = this.state;
         
         if(content_url){
-            
+            ImageService.imageUpload(content_url, this.context.firebaseUid)
+            .then(url => {
+                console.log(url)
+            })
             
         } else this.setState({error: 'Please upload an image to post.'})
     }
@@ -97,7 +101,7 @@ export default class CreatePost extends React.Component {
                         </div>
                     </div>
                     {displayRequiredError}
-                    <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Sign Up</button>
+                    <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Post</button>
                 </div>
             </div>
         </>
