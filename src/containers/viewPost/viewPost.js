@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
 import { Redirect, Link } from 'react-router-dom';
+import moment from 'moment';
 import PostService from '../../services/post';
 import './viewPost.css';
 
@@ -45,7 +46,8 @@ export default class ViewPost extends React.Component {
                     <Link to={'/user/'+username}>@{username}</Link>
                     <h2>{title}</h2>
                     <h3>{caption}</h3>
-                    <h3>{created_at}</h3>
+                    <h3>{moment(created_at).format('LL')}</h3>
+                    <h3>{moment(created_at).format('LT')}</h3>
                     <p>{likesInfo.length} YAS!</p>
                     <p>{summary}</p>
                     <p>View all {commentsInfo.length} comments</p>
