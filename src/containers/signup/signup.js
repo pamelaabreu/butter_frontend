@@ -40,9 +40,12 @@ export default class Signup extends React.Component {
   
     if(this.validateForms()){
       firebase.auth().createUserWithEmailAndPassword(email, password)
-        .then(response => firebase_uid = response.user.uid)
-        .then(uid => ImageService.imageUpload(profileImage, uid))
-        .then(url => url)
+        .then(response => firebase_uid = response.user.uid, err => {
+          // this is err for the firebase promise only
+        })
+        .then(uid => ImageService.imageUpload(profileImage, uid), err => {
+          // this is err for the imageService promise only
+        })
         .then((url) => {
            return axios.post('http://localhost:3000/user/', {
             birthname: birthname, 

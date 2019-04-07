@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 import firebase from './firebase';
+import axios from 'axios';
 import './app.css';
 
 // ---- Pages
@@ -12,6 +13,7 @@ import Logout from './containers/logout/logout';
 import Login from './containers/login/login';
 import Signup from './containers/signup/signup';
 import Error404 from './components/error404';
+import CreatePost from './containers/createPost/createPost';
 
 // ---- Context
 import AuthContext from './contexts/auth';
@@ -22,12 +24,14 @@ class App extends Component {
     user: null,
     token: null,
     dbUid: null,
+    firebaseUid: null,
+    userEmail: null
   }
 
   componentDidMount() {
     this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
       if(user){
-        this.setState({user}, () => {
+        this.setState({user, firebaseUid: user.uid, userEmail: user.email}, () => {
           this.getFirebaseIdToken();
         })
       }
@@ -42,20 +46,26 @@ class App extends Component {
     this.unsubscribe();
   }
 
-  updateDbUid = dbUid => {
-    this.setState({ dbUid });
+  updateDbUid = dbUid => this.setState({ dbUid })
+
+  getDbUid = () => {
+    axios.get(`http://localhost:3000/login/${this.state.firebaseUid}`)
+      .then(res => this.updateDbUid(res.data.id))
+      .catch(err => this.setState({ dbUid:null }))
   }
 xs
   getFirebaseIdToken () {
     firebase.auth().currentUser.getIdToken(false)
-    .then(token => this.setState({ token }))
+    .then(token => this.setState({ token }, () => {
+      this.getDbUid()
+    }))
     .catch(err => this.setState({ token: null }))
   }
 
   render() {
     return (
       
-      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, updateDbUid:this.updateDbUid }}>
+      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, firebaseUid:this.state.firebaseUid, userEmail: this.state.userEmail, updateDbUid:this.updateDbUid }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
@@ -65,6 +75,7 @@ xs
                 <Route path='/logout' exact component={Logout} />
                 <Route path='/login' exact component={Login} />
                 <Route path='/signup' exact component={Signup} />
+                <Route path='/createPost/:id' exact component={CreatePost} />
                 <Route component={Error404} />
             </Switch>
           </div>

@@ -22,11 +22,10 @@ export default class Login extends React.Component {
     e.preventDefault();
 
     const { email, password } = this.state;
+    
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(response => response.user.uid)
-      .then(uid => {
-        return axios.get(`http://localhost:3000/login/${uid}`)
-      })
+      .then(uid => axios.get(`http://localhost:3000/login/${uid}`))
       .then(res => this.context.updateDbUid(res.data.id))
       .catch(err => {
         const { message } = err;
@@ -37,6 +36,7 @@ export default class Login extends React.Component {
 
   render() {
     const { email, password, error } = this.state;
+
     const displayError = error === '' ? '' : <p className='loginError' role="alert"><span role='img' aria-label="Sad Face">😞</span> {error}</p>
     const displayForm = <div className='loginBackground'>
      <div className='loginBox'>
@@ -58,9 +58,7 @@ export default class Login extends React.Component {
       </div>
       <Link className='loginHomeButton' to='/'>Home</Link>      
     </div>
-     
-  
-  
+
     return (
       <AuthContext.Consumer>
         {
