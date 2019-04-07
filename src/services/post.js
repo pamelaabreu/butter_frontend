@@ -10,11 +10,10 @@ PostService.getPostInformation = (postId) => {
 
     const readComments = axios.get(`http://localhost:3000/comment/${parseInt(postId)}/readAllComments`)
     .then(res => res.data)
+    
+    const readUserInfo = readPost.then(({user_posted_id}) => axios.get(`http://localhost:3000/user/${parseInt(user_posted_id)}/`)).then(res => res.data)
 
-    //tag_id
     const readTags = readPost.then(({tag_id}) => tag_id ? axios.get(`http://localhost:3000/tag/${tag_id}`).then(res => res.data) : null)
-    // axios.get(`http://localhost:3000/tag/`)
-    const readUserInfo = readPost.then(({user_posted_id}) => axios.get(`http://localhost:3000/user/${parseInt(user_posted_id)}/`))
 
     const data = Promise.all([readPost, readLikes, readComments, readUserInfo, readTags]).then(allData => {
         const postInfo = allData[0];
