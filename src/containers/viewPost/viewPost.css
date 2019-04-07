@@ -2,4 +2,19 @@
     margin: 0 auto;
     margin-top: 100px;
     width: 75%;
+
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.viewPostImageContainer{
+    flex: 1;
+    overflow: hidden;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+.viewPostInfoContainer{
+    flex: 1;
 }
