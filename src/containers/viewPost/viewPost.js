@@ -43,7 +43,9 @@ export default class ViewPost extends React.Component {
                     <img onLoad={this.onImgLoad} alt={title} src={content_url} />
                 </div>
                 <div className='viewPostInfoContainer'>
-                    <Link to={'/user/'+username}>@{username}</Link>
+                    <div className='viewPostUsername'>
+                        <Link className='viewPostUsername' to={'/user/'+username}>@{username}</Link>
+                    </div>
                     <h2>{title}</h2>
                     <h3>{caption}</h3>
                     <h3>{moment(created_at).format('LL')}</h3>

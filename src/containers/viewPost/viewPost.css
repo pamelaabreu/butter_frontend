@@ -17,4 +17,14 @@
 
 .viewPostInfoContainer{
     flex: 1;
+    padding: 0 20px;
+}
+
+.viewPostUsername{
+    color: black;
+    margin-bottom: 10px;
+}
+
+.viewPostUsername:hover{
+    color: firebrick;
 }
