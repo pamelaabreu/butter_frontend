@@ -14,7 +14,7 @@ import Login from './containers/login/login';
 import Signup from './containers/signup/signup';
 import Error404 from './components/error404';
 import CreatePost from './containers/createPost/createPost';
-import ViewPost from './components/viewPost/viewPost';
+import ViewPost from './containers/viewPost/viewPost';
 
 // ---- Context
 import AuthContext from './contexts/auth';
