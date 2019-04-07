@@ -1,6 +1,6 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import PostService from '../../services/post';
 import './viewPost.css';
 
@@ -12,7 +12,7 @@ export default class ViewPost extends React.Component {
         commentsInfo: [],
         likesInfo: [],
         userInfo: {},
-        tagInfo: {},
+        tagInfo: null,
         error: null,
         dimensions: {
             height: '200px'
@@ -31,18 +31,27 @@ export default class ViewPost extends React.Component {
 
     render(){
         const {postInfo, likesInfo, commentsInfo, userInfo, tagInfo, error} = this.state;
-        const {content_url} = postInfo;
+        const {content_url, caption, created_at, summary, title} = postInfo;
+        const {username, profile_img} = userInfo;
 
         const displayError = error ? <h1>{error}</h1> : null;
         const displayPost = <>
             <div className='viewPostBox'>
                 {displayError}
                 <div className='viewPostImageContainer' style={{height: this.state.dimensions.height, backgroundImage:`url(` + content_url + ")"}}>
-                    <img onLoad={this.onImgLoad} src={content_url} />
+                    <img onLoad={this.onImgLoad} alt={title} src={content_url} />
                 </div>
                 <div className='viewPostInfoContainer'>
-                    <h1>Content Goes Here</h1>
+                    <Link to={'/user/'+username}>@{username}</Link>
+                    <h2>{title}</h2>
+                    <h3>{caption}</h3>
+                    <h3>{created_at}</h3>
+                    <p>{likesInfo.length} YAS!</p>
+                    <p>{summary}</p>
                 </div>
+                {
+                    tagInfo ? <img src={tagInfo.image_url} /> : null
+                }
             </div>
         </>
 
