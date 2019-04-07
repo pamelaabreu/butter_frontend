@@ -48,6 +48,7 @@ export default class ViewPost extends React.Component {
                     <h3>{created_at}</h3>
                     <p>{likesInfo.length} YAS!</p>
                     <p>{summary}</p>
+                    <p>View all {commentsInfo.length} comments</p>
                 </div>
                 {
                     tagInfo ? <img src={tagInfo.image_url} /> : null
