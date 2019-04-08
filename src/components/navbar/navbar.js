@@ -29,11 +29,11 @@ export default class Navbar extends React.Component {
                 </div>
             
                 <div className="navbarButton user">
-                    <Link className='navbarText user' to="/user/:id">u</Link>
+                    <Link className='navbarText user' to={"/user/" + this.context.dbUser.username}>u</Link>
                 </div>
             
                 <div className="navbarButton plus">
-                    <Link className='navbarText plus' to={'/createPost/'+this.context.firebaseUid}>+</Link>
+                    <Link className='navbarText plus' to={'/createPost/' + this.context.firebaseUid}>+</Link>
                 </div>
 
                 <div className="navbarButton notification">
