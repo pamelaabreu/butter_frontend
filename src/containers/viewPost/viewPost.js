@@ -33,7 +33,7 @@ export default class ViewPost extends React.Component {
             <div className='viewPostBox'>
                 {displayError}
                 <div className='viewPostImageContainer'>
-                    <img className='img-fluid' alt={title} src={content_url} />
+                    <img className='img-fluid viewPostImg' alt={title} src={content_url} />
                     {
                         tagInfo ? 
                         <>
