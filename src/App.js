@@ -25,7 +25,7 @@ class App extends Component {
     user: null,
     token: null,
     dbUid: null,
-    dbUser: null,
+    dbUser: {},
     firebaseUid: null,
     userEmail: null
   }
