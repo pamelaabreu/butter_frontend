@@ -9,15 +9,13 @@
 
 .viewPostImageContainer{
     flex: 1;
-    overflow: hidden;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: contain;
+    position: relative;
 }
 
 .viewPostInfoContainer{
     flex: 1;
     padding: 0 20px;
+    font-family: serif;
 }
 
 .viewPostUsername{
@@ -27,4 +25,21 @@
 
 .viewPostUsername:hover{
     color: firebrick;
+}
+
+.viewPostTitle{
+    font-size: 40px;
+    margin: 0;
+}
+
+.viewPostCaption{
+    font-size: 25px;
+    margin: 0;
+}
+
+.viewPostTagContainer{
+    position: absolute;
+    bottom: -66px;
+    left: 0;
+    height: 100px;
 }
