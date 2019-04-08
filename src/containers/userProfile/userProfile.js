@@ -4,6 +4,8 @@ import AuthContext from '../../contexts/auth';
 import UserService from '../../services/user';
 
 export default class UserProfile extends React.Component {
+    static contextType = AuthContext;
+
     state = {
         userInfo:{},
         userFollowers: [],
@@ -27,10 +29,15 @@ export default class UserProfile extends React.Component {
 
         const displayUserProfile = <div>
             <div className='userInfoContainer'>
-                <div style={{width:'60px', height:'60px', backgroundSize:'cover', backgroundPosition:'center', backgroundImage:"url(" + userInfo.profile_img + ")"}}></div>
-                <h2>{userInfo.username}</h2>
-                <h2>{userFollowers.length} Followers</h2>
-                <h2>{userFollowings.length} Following</h2>
+                <div>
+                    <div style={{width:'60px', height:'60px', backgroundSize:'cover', backgroundPosition:'center', backgroundImage:"url(" + userInfo.profile_img + ")"}}></div>
+                    <h2>{userInfo.username}</h2>
+                    <h2>{userFollowers.length} Followers</h2>
+                    <h2>{userFollowings.length} Following</h2>
+                </div>
+                <div>
+                    {userInfo.id === this.context.dbUid ? null : <h2>Follow Placeholder</h2>}
+                </div>
                 <Link style={{border:'2px solid rebeccapurple', padding:'20px'}} to='/logout'>Logout</Link> 
             </div>
         </div>
