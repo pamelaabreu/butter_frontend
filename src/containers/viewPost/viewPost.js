@@ -50,9 +50,9 @@ export default class ViewPost extends React.Component {
                 </div>
                 <div className='viewPostInfoContainer'>
                     <h2 className='viewPostTitle'>{title}</h2>
-                    <p>{likesInfo.length} YAS!</p>
+                    { likesInfo.length === 0 ? null : <p>{likesInfo.length} YAS!</p> }
                     <p>{summary}</p>
-                    <p>View all {commentsInfo.length} comments</p>
+                    { commentsInfo.length === 0 ? null : <p>View all {commentsInfo.length} comments</p>}
                     <h3 className='viewPostDate'>{moment(created_at).format('LL')}</h3>
                     <h3 className='viewPostDate'>{moment(created_at).format('LT')}</h3>
                 </div>
