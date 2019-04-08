@@ -113,7 +113,6 @@ export default class CreatePost extends React.Component {
                         </div>
                     </div>
                     {displayRequiredError}
-                    {/* <Link className='createPostSubmit' to={'/createPost/'+this.context.firebaseUid}>+</Link> */}
                     <button type="submit" className='createPostSubmit' onClick={this.handleSubmit}>Post</button>
                 </div>
             </div>

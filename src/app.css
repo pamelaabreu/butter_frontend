@@ -2,8 +2,18 @@
     box-sizing: border-box;
     margin:0;
     padding: 0;
+    color: black;
+    line-height: 1;
 }
 
 body{
     background-color: #E0DED4;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: none;
 }
