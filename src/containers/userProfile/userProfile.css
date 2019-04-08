@@ -1,0 +1,100 @@
+.userProfileContainer{
+    width: 75%;
+    margin: 0 auto;
+    margin-top: 100px;
+    display: flex;
+    flex-wrap: wrap; 
+}
+
+.userContainer{
+    position: absolute;
+    top: 0;
+    right: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    
+    height: 66px;
+    border: 1px solid firebrick;
+    font-family: serif;
+}
+
+.userInfoContainer{
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.userProfileImg{
+    width: 64px;
+    height: 64px;
+    margin-right: 12px;
+    background-position: center;
+    background-size: cover;
+}
+
+.userInfoText{
+    margin: 0 20px;
+    font-size: 20px;
+}
+
+.userLogoutContainer{
+    width: 66px;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-left: 1px solid firebrick;
+}
+
+.userLogoutContainer:hover{
+    background: linear-gradient(70deg, rebeccapurple, #9c27b0, firebrick);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 10s linear infinite;
+    -moz-animation: AnimationName 10s linear infinite;
+    animation: AnimationName 10s linear infinite;
+    cursor: url(https://static.greatbigcanvas.com/images/square/getty-images/two-small-black-and-white-dalmatian-puppies,1001837.jpg?max=128),auto;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+.userLogout{
+    font-family: 'Black Ops One', cursive;
+    font-size: 60px;
+    color: firebrick;
+}
+
+.userLogout:hover{
+    color: firebrick;
+}
+
+.userProfilePosts{
+    width: 190px;
+    height: 190px;
+    /* margin: 20px; */
+    background-position: center;
+    background-size: cover;
+    background-color: #9c27b0;
+}
+
+
+
+
+
