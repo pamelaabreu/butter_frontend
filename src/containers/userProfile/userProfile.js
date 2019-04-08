@@ -1,8 +1,21 @@
 import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import AuthContext from '../../contexts/auth';
+import UserService from '../../services/user';
 
 export default class UserProfile extends React.Component {
+    state = {
+        userInfo:{},
+        userFollowers: [],
+        userFollowings: [],
+        userPosts: []
+    }
+
+    componentDidMount () {
+        UserService.getUsersInfo(this.props.match.params.id)
+        .then(({userInfo, userFollowers, userFollowings, userPosts}) => this.setState({userInfo, userFollowers, userFollowings, userPosts}))
+    }
+
     render () {
         return (
             <AuthContext.Consumer>
