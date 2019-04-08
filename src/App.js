@@ -25,6 +25,7 @@ class App extends Component {
     user: null,
     token: null,
     dbUid: null,
+    dbUser: null,
     firebaseUid: null,
     userEmail: null
   }
@@ -46,8 +47,14 @@ class App extends Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
+  
+  getDbUser = dbUid => {
+    axios.get(`http://localhost:3000/user/${dbUid}`)
+    .then(res => this.setState({ dbUser: res.data }))
+    .catch(err => this.setState({ dbUser:null }))
+  }
 
-  updateDbUid = dbUid => this.setState({ dbUid })
+  updateDbUid = dbUid => this.setState({ dbUid }, () => this.getDbUser(dbUid))
 
   getDbUid = () => {
     axios.get(`http://localhost:3000/login/${this.state.firebaseUid}`)
@@ -66,7 +73,7 @@ xs
   render() {
     return (
       
-      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, firebaseUid:this.state.firebaseUid, userEmail: this.state.userEmail, updateDbUid:this.updateDbUid }}>
+      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, dbUser:this.state.dbUser, firebaseUid:this.state.firebaseUid, userEmail: this.state.userEmail, updateDbUid:this.updateDbUid }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>
