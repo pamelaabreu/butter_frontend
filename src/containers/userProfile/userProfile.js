@@ -7,7 +7,9 @@ export default class UserProfile extends React.Component {
     static contextType = AuthContext;
 
     state = {
-        userInfo:{},
+        userInfo:{
+            birthday:''
+        },
         userFollowers: [],
         userFollowings: [],
         userPosts: [],
@@ -20,18 +22,16 @@ export default class UserProfile extends React.Component {
         .catch(err => this.setState({ userInfo:{}, userFollowers:{}, userFollowings:{}, userPosts:{}, error:`Trouble getting ${this.props.match.params.id}. Please try again later.` }))
     }
 
-    getHoroscopeSign = (birthday) => {
-        const dates = birthday.split('-')
-    }
-
     render () {
         const {userInfo, userFollowers, userFollowings, userPosts} = this.state;
+        const sign = UserService.getHoroscopeSign(userInfo.birthday);
 
         const displayUserProfile = <div>
             <div className='userInfoContainer'>
                 <div>
                     <div style={{width:'60px', height:'60px', backgroundSize:'cover', backgroundPosition:'center', backgroundImage:"url(" + userInfo.profile_img + ")"}}></div>
                     <h2>{userInfo.username}</h2>
+                    <h2>{sign}</h2>
                     <h2>{userFollowers.length} Followers</h2>
                     <h2>{userFollowings.length} Following</h2>
                 </div>
