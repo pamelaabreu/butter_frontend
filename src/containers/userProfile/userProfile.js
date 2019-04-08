@@ -2,6 +2,7 @@ import React from 'react';
 import { Redirect, Link } from 'react-router-dom';
 import AuthContext from '../../contexts/auth';
 import UserService from '../../services/user';
+import './userProfile.css';
 
 export default class UserProfile extends React.Component {
     static contextType = AuthContext;
@@ -26,32 +27,32 @@ export default class UserProfile extends React.Component {
         const {userInfo, userFollowers, userFollowings, userPosts} = this.state;
         const sign = UserService.getHoroscopeSign(userInfo.birthday);
 
-        const displayUserProfile = <div>
-            <div className='userInfoContainer'>
-                <div>
-                    <div style={{width:'60px', height:'60px', backgroundSize:'cover', backgroundPosition:'center', backgroundImage:"url(" + userInfo.profile_img + ")"}}></div>
-                    <h2>{userInfo.username}</h2>
-                    <h2>{sign}</h2>
-                    <h2>{userFollowers.length} Followers</h2>
-                    <h2>{userFollowings.length} Following</h2>
+        const displayPosts = userPosts.map((e, i) => {
+            return <Link to={"/viewPost/" + e.id}>
+                    <div key={i} className='userProfilePosts' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+                </Link>
+        });
+
+        const displayUserProfile = <div className='userProfileContainer'>
+            <div className='userContainer'>
+                <div className='userInfoContainer'>
+                    <div className='userProfileImg' style={{backgroundImage:"url(" + userInfo.profile_img + ")"}}></div>
+                    <h2 className='userInfoText'>{userInfo.username}</h2>
+                    <h2 className='userInfoText'>{sign.toLowerCase()}</h2>
+                    <h2 className='userInfoText'>{userFollowers.length} followers / {userFollowings.length} following</h2>
                 </div>
-                <div>
-                    {userInfo.id === this.context.dbUid ? null : <h2>Follow Placeholder</h2>}
-                </div>
-                <Link style={{border:'2px solid rebeccapurple', padding:'20px'}} to='/logout'>Logout</Link> 
+                
+                {userInfo.id === this.context.dbUid ? null : <h2>Follow Placeholder</h2>}
+                {userInfo.id === this.context.dbUid ? <div className='userLogoutContainer'><Link className='userInfoText userLogout' to='/logout'>l</Link></div> : null}
+                
             </div>
+            {displayPosts}
         </div>
 
         return (
             <AuthContext.Consumer>
                 {
-                    ({user}) => user ? <>
-                        <div style={{marginTop:'100px'}}>
-                            {displayUserProfile}
-                        </div>
-                    </>
-                    : 
-                    <Redirect to='/'/>
+                    ({user}) => user ? displayUserProfile : <Redirect to='/'/>
                 }
             </AuthContext.Consumer>
         )
