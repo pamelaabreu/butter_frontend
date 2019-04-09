@@ -24,4 +24,9 @@ FollowService.createFollow = (userFollowerId, userFollowingId) => {
     .then(res => res.data.followId)
 }
 
+FollowService.deleteFollow = dbFollowId => {
+    return axios.delete(`http://localhost:3000/follow/${dbFollowId}`)
+    .then(res => res.data)
+}
+
 export default FollowService;
