@@ -4,6 +4,8 @@ import AuthContext from '../../contexts/auth';
 import UserService from '../../services/user';
 import './userProfile.css';
 
+import FollowButton from '../followButton/followButton';
+
 export default class UserProfile extends React.Component {
     static contextType = AuthContext;
 
@@ -42,7 +44,7 @@ export default class UserProfile extends React.Component {
                     <h2 className='userInfoText'>{userFollowers.length} followers / {userFollowings.length} following</h2>
                 </div>
                 
-                {userInfo.id === this.context.dbUid ? null : <h2>Follow Placeholder</h2>}
+                {userInfo.id === this.context.dbUid ? null : <FollowButton username={this.props.match.params.id}/>}
                 {userInfo.id === this.context.dbUid ? <div className='userLogoutContainer'><Link className='userInfoText userLogout' to='/logout'>l</Link></div> : null}
                 
             </div>
