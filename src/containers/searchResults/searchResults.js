@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+import SearchService from '../../services/search';
+import UserService from '../../services/user';
 import './searchResults.css';
 
 export default class SearchResults extends React.Component {
@@ -14,67 +17,29 @@ export default class SearchResults extends React.Component {
             return;
         }
 
-        const user = {
-            username: 'brbpam',
-            id: 1,
-            firebase_uid: 'something',
-            followers: 2,
-            followings: 2,
-            sign: 'scorpio',
-            following: 'following',
-            profile_img: 'https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/10/terrier-puppy.jpg?itok=rIgh3ArV&fc=50,50'
-        };
+        SearchService.getSearchResults(input)
+        .then(results => this.setState({ input, results }))
 
-        const user2 = {
-            username: 'designdyke',
-            id: 2,
-            firebase_uid: 'something',
-            followers: 1,
-            followings: 1,
-            sign: 'leo',
-            following: 'following',
-            profile_img: 'https://www.popsci.com/sites/popsci.com/files/styles/1000_1x_/public/images/2017/10/terrier-puppy.jpg?itok=rIgh3ArV&fc=50,50'
-        };
-
-        const user3 = {
-            username: 'thinx',
-            id: 2,
-            firebase_uid: 'something',
-            followers: 0,
-            followings: 0,
-            sign: '',
-            following: 'follow',
-            profile_img: 'https://mindbodygreen-res.cloudinary.com/images/w_767,q_auto:eco,f_auto,fl_lossy/ptr/QpbufLD/thinx.png'
-        };
-        
-        const allUsers = [user, user2, user3];
-        const resultUsers = allUsers.filter((e) => {
-            const isTrue = e.username.toLowerCase().includes(input.toLowerCase());
-            if(isTrue){
-                return e;
-            };
-            
-        })
-
-        this.setState({ input, results: resultUsers })
     }
 
     searchResultList = () => {
         return this.state.results.map((e, i) => {
+            const { user, usersFollowers, usersFollowing } = e;
+            const sign = UserService.getHoroscopeSign(user.birthday);
                 return (
                     <div className='searchUserBox' key={i}>
                         <div className='searchUserImgBox'>
-                            <img className='searchUserImg' src={`${e.profile_img}`}/>
+                            <img className='searchUserImg' src={`${user.profile_img}`}/>
                         </div>
 
                         <div className='searchUserInfo'>
-                            <h1 className='searchUsername'>{e.username}</h1>
-                            <h1>{e.followers} followers / {e.followings} following</h1>
-                            <h1 className='searchSign'>{e.sign}</h1>
+                            <Link className='searchUsername' to={"user/" + user.username}>{user.username}</Link>
+                            <h1>{usersFollowers.length} followers / {usersFollowing.length} following</h1>
+                            <h1 className='searchSign'>{sign}</h1>
                         </div>
 
                         <div className='searchFollow'>
-                            <h1>{e.following}</h1>
+                            <h1>Follow Placeholder</h1>
                         </div>
         
                     </div>
