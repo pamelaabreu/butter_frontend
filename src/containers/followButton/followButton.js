@@ -15,6 +15,7 @@ export default class FollowButton extends React.Component {
 
     handleFollow = () => {
         const { userFollowerId,userFollowingId } = this.state;
+
         FollowService.createFollow(userFollowerId,userFollowingId)
         .then(dbFollowId => this.setState({ dbFollowId, following: true }))
         .catch(err => this.setState({ error: `Trouble following ${this.props.username}` }))
@@ -22,7 +23,9 @@ export default class FollowButton extends React.Component {
     }
 
     handleUnfollow = () => {
-        console.log('In Unfollow')
+        FollowService.deleteFollow(this.state.dbFollowId)
+        .then(data => this.setState({ following: false, dbFollowId: null }))
+        .catch(err => this.setState({ error: `Trouble unfollowing ${this.props.username}` }))
     }
 
     componentDidMount () {
@@ -34,7 +37,6 @@ export default class FollowButton extends React.Component {
         if(this.state.following){
             return <button onClick={this.handleUnfollow}>Unfollow</button>
         } else return <button onClick={this.handleFollow}>Follow</button>
-        
-        
+          
     }
 }
