@@ -1,0 +1,11 @@
+.followButton {
+    margin: 0 20px;
+    font-size: 20px;
+    font-family: serif;
+    background: none;
+    border: none;
+}
+
+.followButton:hover {
+    color: firebrick;
+}
