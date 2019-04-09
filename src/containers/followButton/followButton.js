@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
 import FollowService from '../../services/follow';
+import './followButton.css';
 
 export default class FollowButton extends React.Component {
     static contextType = AuthContext;
@@ -35,8 +36,8 @@ export default class FollowButton extends React.Component {
 
     render () {
         if(this.state.following){
-            return <button onClick={this.handleUnfollow}>Unfollow</button>
-        } else return <button onClick={this.handleFollow}>Follow</button>
+            return <button className='followButton' onClick={this.handleUnfollow}>Unfollow</button>
+        } else return <button className='followButton' onClick={this.handleFollow}>Follow</button>
           
     }
 }
