@@ -11,6 +11,7 @@ export default class Home extends React.Component {
   static contextType = AuthContext;
 
   state = {
+    followingUsersPosts: [],
     error: null
   }
 
@@ -18,7 +19,8 @@ export default class Home extends React.Component {
 
     if(this.context.dbUid){
       NewsfeedService.getAllFollowingsPosts(this.context.dbUid)
-      .then(followingUsersPosts => console.log(followingUsersPosts))
+      .then(followingUsersPosts => this.setState({ followingUsersPosts }))
+      .catch(err => this.setState({ error: "Trouble getting newsfeed." }) )
     } else this.setState({ error: "Trouble getting newsfeed." })
     
   }
