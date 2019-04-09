@@ -1,0 +1,45 @@
+.followButton {
+    margin: 0 20px;
+    font-size: 20px;
+    font-family: serif;
+    background: none;
+    border: none;
+    outline-color: firebrick !important;
+}
+
+.followButton:hover {
+    color: firebrick;
+    background: linear-gradient(70deg, rebeccapurple,#E0DED4, #9c27b0);
+    background-size: 600% 600%;
+    -webkit-animation: AnimationName 2s linear infinite;
+    -moz-animation: AnimationName 1s linear infinite;
+    animation: AnimationName 2s linear infinite;
+}
+
+@-webkit-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@-moz-keyframes AnimationName {
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+@keyframes AnimationName { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+}
+
+@media (max-width: 1176px){
+    .followButton {
+        margin: 0;
+        width: 66px;
+        height: 66px;
+        position: absolute;
+        top: -1px;
+        right: -66px;
+        border: 1px solid firebrick;
+    }
+}

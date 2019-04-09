@@ -22,3 +22,17 @@
     font-weight: bold;
     color: fuchsia;
 }
+
+.searchBar:-webkit-autofill,
+.searchBar:-webkit-autofill:hover, 
+.searchBar:-webkit-autofill:focus
+.searchBar:-webkit-autofill,
+.searchBar:-webkit-autofill:hover
+.searchBar:-webkit-autofill:focus,
+.searchBar:-webkit-autofill,
+.searchBar:-webkit-autofill:hover,
+.searchBar:-webkit-autofill:focus {
+  -webkit-text-fill-color: fuchsia;
+  -webkit-box-shadow: transparent;
+  transition: background-color 5000s ease-in-out 0s;
+}
