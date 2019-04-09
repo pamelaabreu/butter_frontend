@@ -4,6 +4,8 @@ import SearchService from '../../services/search';
 import UserService from '../../services/user';
 import './searchResults.css';
 
+import FollowButton from '../followButton/followButton';
+
 export default class SearchResults extends React.Component {
 
     state = {
@@ -39,7 +41,7 @@ export default class SearchResults extends React.Component {
                         </div>
 
                         <div className='searchFollow'>
-                            <h1>Follow Placeholder</h1>
+                            <FollowButton username={user.username}/>
                         </div>
         
                     </div>
