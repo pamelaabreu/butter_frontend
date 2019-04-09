@@ -1,6 +1,7 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
 import { Link } from 'react-router-dom';
+import './newsfeed.css';
 import './home.css';
 import NewsfeedService from '../../services/newsfeed';
 
