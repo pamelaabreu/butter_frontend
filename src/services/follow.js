@@ -19,4 +19,9 @@ FollowService.checkUserFollowing = (userFollowerId, userFollowingName) => {
     })
 }
 
+FollowService.createFollow = (userFollowerId, userFollowingId) => {
+    return axios.post('http://localhost:3000/follow/', { user_follower_id: userFollowerId, user_following_id: userFollowingId })
+    .then(res => res.data.followId)
+}
+
 export default FollowService;
