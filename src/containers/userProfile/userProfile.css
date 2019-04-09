@@ -51,11 +51,11 @@
 }
 
 .userLogoutContainer:hover{
-    background: linear-gradient(70deg, rebeccapurple, #9c27b0, firebrick);
+    background: linear-gradient(70deg, rebeccapurple,#E0DED4, #9c27b0);
     background-size: 600% 600%;
-    -webkit-animation: AnimationName 10s linear infinite;
-    -moz-animation: AnimationName 10s linear infinite;
-    animation: AnimationName 10s linear infinite;
+    -webkit-animation: AnimationName 2s linear infinite;
+    -moz-animation: AnimationName 1s linear infinite;
+    animation: AnimationName 2s linear infinite;
     cursor: url(https://static.greatbigcanvas.com/images/square/getty-images/two-small-black-and-white-dalmatian-puppies,1001837.jpg?max=128),auto;
 }
 
@@ -92,6 +92,28 @@
     background-position: center;
     background-size: cover;
     background-color: #9c27b0;
+}
+
+@media (max-width: 1176px){
+    .userProfileContainer {
+        margin-top: 198px;
+    }
+
+    .userContainer {
+        position: absolute;
+        top: 65px;
+        left: 0;
+        height: 66px;
+        width: 570px;
+    }
+
+    .userLogoutContainer {
+        position: absolute;
+        top: -1px;
+        right: -66px;
+        height: 66px;
+        border: 1px solid firebrick;
+    }
 }
 
 
