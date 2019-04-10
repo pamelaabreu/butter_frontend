@@ -8,7 +8,7 @@ export default (props) => {
         <h1 className='welcomeTitle'>butter</h1>
         <div className='welcomeInfoBox'>
           <p>
-            A place to safely share honest confessions about sex, shame, and insecurities.
+            You're not perfect. That's ok. This website isn't either.
           </p>
           <div className='homeSignUpButton'>
             <Link className='homeSignUpButtonText' to="/signup">Sign Up</Link>
