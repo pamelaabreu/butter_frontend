@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const NewsfeedService = {};
+const HomeService = {};
 
-NewsfeedService.getAllFollowingsPosts = (dbUid) => {
+HomeService.getAllFollowingsPosts = (dbUid) => {
     const getUsersFollowings = axios.get(`http://localhost:3000/follow/${dbUid}/readAllFollowings`).then(res => res.data)
     
     const getFollowingUsersPosts = getUsersFollowings.then(users => {
@@ -19,4 +19,6 @@ NewsfeedService.getAllFollowingsPosts = (dbUid) => {
     return getFollowingUsersPosts;
   }
 
-export default NewsfeedService;
+HomeService.getAllPosts = () => axios.get(`http://localhost:3000/post/allPosts`).then(({data}) => data.slice(0).reverse())
+
+export default HomeService;
