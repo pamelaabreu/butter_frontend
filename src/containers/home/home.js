@@ -1,57 +1,29 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
-import { Link } from 'react-router-dom';
-import './newsfeed.css';
 import './home.css';
-import NewsfeedService from '../../services/newsfeed';
+import HomeService from '../../services/home';
 
 import Welcome from '../../components/welcome';
+import Newsfeed from '../../components/newsfeed/newsfeed';
 
 export default class Home extends React.Component {
 
   static contextType = AuthContext;
 
   state = {
-    followingUsersPosts: [],
+    allPosts: [],
     error: null
   }
 
   componentDidMount () {
-
-    if(this.context.dbUid){
-      NewsfeedService.getAllFollowingsPosts(this.context.dbUid)
-      .then(followingUsersPosts => this.setState({ followingUsersPosts }))
-      .catch(err => this.setState({ error: "Trouble getting newsfeed." }) )
-    } else this.setState({ error: "Trouble getting newsfeed." })
+    HomeService.getAllPosts()
+    .then(allPosts => this.setState({ allPosts }))
+    .catch(err => this.setState({ error: "Trouble getting posts.", allPosts:[] }))
     
   }
   
   render() {
-    const newsfeedPosts = this.state.followingUsersPosts.map((e, i) => {
-      const { followingUser, followingUserPosts } = e;
-      return (
-        followingUserPosts.map((e, i) => {
-          const {caption, content_url, id, summary, title} = e;
-
-          return (
-            <div className="newsfeedPost">
-              <p className="feedTitle">{title}</p>
-              <Link to={"/video/"+ id}>
-                <img className='feedImg' src={content_url} />
-              </Link>
-                      
-              <div className='newsfeedInfo'>
-                <Link className='newsfeedUsername' to={"/user/" + followingUser.username}>@{followingUser.username}</Link>
-                {/* <p className="newsfeedLikes">1000 YAS!</p> */}
-              </div>
-          
-              <p className="feedCaption">{caption}</p>
-            </div>
-          );
-        })
-      );
-    })
-
+    
     return (
       <AuthContext.Consumer>
         {
@@ -62,8 +34,7 @@ export default class Home extends React.Component {
                 <div className='blank'>
                   <div className='arrowDown'></div>
                 </div>
-
-                {newsfeedPosts}
+                <Newsfeed allPosts={this.state.allPosts}/>
               </div>
             </>
             } else {
