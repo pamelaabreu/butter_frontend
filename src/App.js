@@ -31,11 +31,10 @@ class App extends Component {
   }
 
   componentDidMount() {
-    this.unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(async user => {
       if(user){
-        this.setState({user, firebaseUid: user.uid, userEmail: user.email}, () => {
-          this.getFirebaseIdToken();
-        })
+        await this.setState({user, firebaseUid: user.uid, userEmail: user.email})
+        await this.getFirebaseIdToken();
       }
       else {
         this.setState({ user: null })
