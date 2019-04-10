@@ -1,42 +1,44 @@
 import React from 'react';
 import AuthContext from '../../contexts/auth';
-import { Link } from 'react-router-dom';
 import './home.css';
+import HomeService from '../../services/home';
+
+import Welcome from '../../components/welcome';
+import Newsfeed from '../../components/newsfeed/newsfeed';
 
 export default class Home extends React.Component {
+
+  static contextType = AuthContext;
+
+  state = {
+    allPosts: [],
+    error: null
+  }
+
+  componentDidMount () {
+    HomeService.getAllPosts()
+    .then(allPosts => this.setState({ allPosts }))
+    .catch(err => this.setState({ error: "Trouble getting posts.", allPosts:[] }))
+    
+  }
   
   render() {
-    const welcome = <>
-      <div className='homeBackground'>
-        <div className='welcomeBox'>
-          <h1 className='welcomeTitle'>butter</h1>
-          <div className='welcomeInfoBox'>
-            <p>
-              A place to safely share honest confessions about sex, shame, and insecurities.
-            </p>
-            <div className='homeSignUpButton'>
-              <Link className='homeSignUpButtonText' to="/signup">Sign Up</Link>
-            </div>
-          </div>
-        </div>
-        <div className='homeLoginBox'>
-          <p>Already a Member?</p>
-          <Link className='signUpButtonText' to="/login">Login</Link>
-        </div>
-      </div>
-    </>
-
+    
     return (
       <AuthContext.Consumer>
         {
           ({user}) => {
             if (user) {
               return <>
-              <h2>Welcome back, {user.email}</h2>
-              <h4>Your ID is:{user.uid} </h4>
+              <div className='experiment'>
+                <div className='blank'>
+                  <div className='arrowDown'></div>
+                </div>
+                <Newsfeed allPosts={this.state.allPosts}/>
+              </div>
             </>
             } else {
-              return welcome
+              return <Welcome />
             }
           }
         }

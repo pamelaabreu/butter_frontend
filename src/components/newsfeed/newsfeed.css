@@ -1,0 +1,394 @@
+
+.experiment {
+    transform: perspective(300px) rotateX(25deg);
+    transform-origin: 50% 100%;
+    width: 1440px;
+    height: 10000px;
+    
+    margin: 0 auto;
+    padding: 40px;
+    overflow-y: scroll;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none;  /* IE 10+ */
+    
+    position: absolute;
+    font-size: 350%;
+    bottom: 0;
+    
+}
+
+.experiment::-webkit-scrollbar  { /* WebKit */
+    width: 0;
+    height: 0;
+}
+
+.blank {
+    height: 9000px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: baseline;
+}
+
+.arrowDown  {
+    height: 100px;
+    width: 100px;
+    background-image: url(../../assets/down_triangle.png);
+    background-position: center;
+    background-size: cover;
+}
+
+.newsfeedContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 100%;
+    position: relative;
+}
+
+.newsfeedPost {
+    position: relative;
+}
+
+.newsfeedPost:first-child {
+    /* margin-top: 9000px; */
+}
+
+.newsfeedInfo {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    padding-top: 20px;
+}
+
+.feedTitle {
+    position: absolute;
+    left: 50%;
+    top: 200px;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 300px;
+    /* text-shadow: 0px 26px 22px firebrick;   */
+}
+
+.feedImg {
+    width: 100%;
+    height: auto;
+    box-shadow: -1px 11px 10px 7px #0000005e;
+}
+
+.feedCaption {
+    margin: 300px;
+    margin-top: 100px;
+    color: black;
+    font-size: 70px;  
+}
+
+.newsfeedUsername {
+    color: firebrick;
+    font-size: 40px;
+    font-family: "Krona One", sans-serif; 
+}
+
+.newsfeedLikes {
+    color: firebrick;
+    font-size: 40px;
+    font-family: "Krona One", sans-serif; 
+}
+
+
+@media (width: 320px) {
+    .experiment {
+        transform: perspective(300px) rotateX(15deg);
+        transform-origin: 50% 100%;
+        width: 320px;
+        height: 9999px;
+        
+        margin: 0 auto;
+        padding: 5px;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+        
+        position: absolute;
+        bottom: 0;
+        
+    }
+
+    .blank {
+        min-height: 9600px;
+    }
+    
+    .feedTitle {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 100px;
+    }
+
+    .feedImg {
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 7px 20px 0px #0000005e;;
+    }
+
+    .newsfeedUsername {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+    
+    .newsfeedLikes {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+
+    .feedCaption {
+        margin: 0;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        color: black;
+        font-size: 40px;  
+    }
+
+}
+
+@media (width: 360px) {
+    .experiment {
+        transform: perspective(300px) rotateX(15deg);
+        transform-origin: 50% 100%;
+        width: 360px;
+        height: 9999px;
+        
+        margin: 0 auto;
+        padding: 5px;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+        
+        position: absolute;
+        bottom: 0;
+        
+    }
+
+    .blank {
+        min-height: 9600px;
+    }
+    
+    .feedTitle {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 100px;
+    }
+
+    .feedImg {
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 7px 20px 0px #0000005e;;
+    }
+
+    .newsfeedUsername {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+    
+    .newsfeedLikes {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+
+    .feedCaption {
+        margin: 0;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        color: black;
+        font-size: 40px;  
+    }
+
+}
+
+@media (width: 375px) {
+    .experiment {
+        transform: perspective(300px) rotateX(15deg);
+        transform-origin: 50% 100%;
+        width: 375px;
+        height: 9999px;
+        
+        margin: 0 auto;
+        padding: 5px;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+        
+        position: absolute;
+        bottom: 0;
+        
+    }
+
+    .blank {
+        min-height: 9600px;
+    }
+    
+    .feedTitle {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 100px;
+    }
+
+    .feedImg {
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 7px 20px 0px #0000005e;;
+    }
+
+    .newsfeedUsername {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+    
+    .newsfeedLikes {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+
+    .feedCaption {
+        margin: 0;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        color: black;
+        font-size: 40px;  
+    }
+
+}
+
+@media (width: 411px) {
+    .experiment {
+        transform: perspective(300px) rotateX(15deg);
+        transform-origin: 50% 100%;
+        width: 411px;
+        height: 9999px;
+        
+        margin: 0 auto;
+        padding: 5px;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+        
+        position: absolute;
+        bottom: 0;
+        
+    }
+
+    .blank {
+        min-height: 9600px;
+    }
+    
+    .feedTitle {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 100px;
+    }
+
+    .feedImg {
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 7px 20px 0px #0000005e;;
+    }
+
+    .newsfeedUsername {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+    
+    .newsfeedLikes {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+
+    .feedCaption {
+        margin: 0;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        color: black;
+        font-size: 40px;  
+    }
+
+}
+
+@media (width: 414px) {
+    .experiment {
+        transform: perspective(300px) rotateX(15deg);
+        transform-origin: 50% 100%;
+        width: 414px;
+        height: 9999px;
+        
+        margin: 0 auto;
+        padding: 5px;
+        overflow-y: scroll;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none;  /* IE 10+ */
+        
+        position: absolute;
+        bottom: 0;
+        
+    }
+
+    .blank {
+        min-height: 9600px;
+    }
+    
+    .feedTitle {
+        position: absolute;
+        left: 50%;
+        top: 200px;
+        transform: translate(-50%, -50%);
+        color: white;
+        font-size: 100px;
+    }
+
+    .feedImg {
+        width: 100%;
+        height: auto;
+        box-shadow: 0px 7px 20px 0px #0000005e;;
+    }
+
+    .newsfeedUsername {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+    
+    .newsfeedLikes {
+        color: firebrick;
+        font-size: 20px;
+        font-family: "Krona One", sans-serif; 
+    }
+
+    .feedCaption {
+        margin: 0;
+        margin-top: 100px;
+        margin-bottom: 200px;
+        color: black;
+        font-size: 40px;  
+    }
+
+}
+
