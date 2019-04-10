@@ -27,6 +27,30 @@ export default class Home extends React.Component {
   }
   
   render() {
+    const newsfeedPosts = this.state.followingUsersPosts.map((e, i) => {
+      const { followingUser, followingUserPosts } = e;
+      return (
+        followingUserPosts.map((e, i) => {
+          const {caption, content_url, id, summary, title} = e;
+
+          return (
+            <div className="newsfeedPost">
+              <p className="feedTitle">{title}</p>
+              <Link to={"/video/"+ id}>
+                <img className='feedImg' src={content_url} />
+              </Link>
+                      
+              <div className='newsfeedInfo'>
+                <Link className='newsfeedUsername' to={"/user/" + followingUser.username}>@{followingUser.username}</Link>
+                {/* <p className="newsfeedLikes">1000 YAS!</p> */}
+              </div>
+          
+              <p className="feedCaption">{caption}</p>
+            </div>
+          );
+        })
+      );
+    })
 
     return (
       <AuthContext.Consumer>
@@ -34,8 +58,13 @@ export default class Home extends React.Component {
           ({user}) => {
             if (user) {
               return <>
-              <h2>Welcome back, {user.email}</h2>
-              <h4>Your ID is:{user.uid} </h4>
+              <div className='experiment'>
+                <div className='blank'>
+                  <div className='arrowDown'></div>
+                </div>
+
+                {newsfeedPosts}
+              </div>
             </>
             } else {
               return <Welcome />
