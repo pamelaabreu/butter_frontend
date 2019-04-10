@@ -2,6 +2,8 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import './newsfeed.css';
 
+import LikeButton from '../../containers/likeButton/likeButton';
+
 const Newsfeed = (props) => {
     return props.allPosts.map((e, i) => {
         const {caption, content_url, id, title} = e.postInfo;
@@ -14,6 +16,7 @@ const Newsfeed = (props) => {
                       
               <div className='newsfeedInfo'>
                 <Link className='newsfeedUsername' to={"/user/" + e.userInfo.username}>@{e.userInfo.username}</Link>
+                <LikeButton postInfo={e.postInfo} userInfo={e.userInfo}/>
                 {/* <p className="newsfeedLikes">1000 YAS!</p> */}
               </div>
           
