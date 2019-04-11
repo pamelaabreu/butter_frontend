@@ -30,11 +30,36 @@ class App extends Component {
     userEmail: null
   }
 
-  componentDidMount() {
+  componentDidMount () {
     this.unsubscribe = firebase.auth().onAuthStateChanged(async user => {
       if(user){
-        await this.setState({user, firebaseUid: user.uid, userEmail: user.email})
-        await this.getFirebaseIdToken();
+
+        // Gets user token
+        const firebaseToken = firebase.auth().currentUser.getIdToken(false)
+          .then(token => token, () => null)
+
+        // Gets user dbUid
+        const getDbUid = firebaseToken
+          .then(token => axios.get(`http://localhost:3000/login/${user.uid}`))
+          .then(res => res.data.id, err => null)
+        
+        // Gets user dbUser
+        const getDbUser = getDbUid
+          .then(dbUid => axios.get(`http://localhost:3000/user/${dbUid}`))
+          .then(res => res.data, err => null)
+
+        Promise.all([firebaseToken, getDbUid, getDbUser]).then(all => {
+          const [token, dbUid, dbUser] = all;
+          this.setState({
+            token,
+            dbUid,
+            dbUser,
+            user, 
+            firebaseUid: user.uid, 
+            userEmail: user.email,
+          });
+        });
+
       }
       else {
         this.setState({ user: null })
@@ -46,33 +71,22 @@ class App extends Component {
   componentWillUnmount() {
     this.unsubscribe();
   }
-  
-  getDbUser = dbUid => {
-    axios.get(`http://localhost:3000/user/${dbUid}`)
-    .then(res => this.setState({ dbUser: res.data }))
-    .catch(err => this.setState({ dbUser:null }))
-  }
-
-  updateDbUid = dbUid => this.setState({ dbUid }, () => this.getDbUser(dbUid))
-
-  getDbUid = () => {
-    axios.get(`http://localhost:3000/login/${this.state.firebaseUid}`)
-      .then(res => this.updateDbUid(res.data.id))
-      .catch(err => this.setState({ dbUid:null }))
-  }
-xs
-  getFirebaseIdToken () {
-    firebase.auth().currentUser.getIdToken(false)
-    .then(token => this.setState({ token }, () => {
-      this.getDbUid()
-    }))
-    .catch(err => this.setState({ token: null }))
-  }
+ 
+  updateDbUid = dbUid => this.setState({ dbUid })
 
   render() {
     return (
       
-      <AuthContext.Provider value={{ user:this.state.user, token:this.state.token, dbUid:this.state.dbUid, dbUser:this.state.dbUser, firebaseUid:this.state.firebaseUid, userEmail: this.state.userEmail, updateDbUid:this.updateDbUid }}>
+      <AuthContext.Provider value={
+        { 
+          user:this.state.user, 
+          token:this.state.token, 
+          dbUid:this.state.dbUid, 
+          dbUser:this.state.dbUser, 
+          firebaseUid:this.state.firebaseUid, 
+          userEmail: this.state.userEmail, 
+          updateDbUid:this.updateDbUid 
+        }}>
         <Route path='/' component={Navbar} />
           <div >
             <Switch>

@@ -5,6 +5,8 @@ import moment from 'moment';
 import PostService from '../../services/post';
 import './viewPost.css';
 
+import LikeButton from '../likeButton/likeButton';
+
 export default class ViewPost extends React.Component {
     static contextType = AuthContext;
 
@@ -50,7 +52,7 @@ export default class ViewPost extends React.Component {
                 </div>
                 <div className='viewPostInfoContainer'>
                     <h2 className='viewPostTitle'>{title}</h2>
-                    { likesInfo.length === 0 ? null : <p>{likesInfo.length} YAS!</p> }
+                    <LikeButton postInfo={postInfo} />
                     <p>{summary}</p>
                     { commentsInfo.length === 0 ? null : <p>View all {commentsInfo.length} comments</p>}
                     <h3 className='viewPostDate'>{moment(created_at).format('LL')}</h3>

@@ -1,8 +1,16 @@
+// REACT
 import React from 'react';
+
+// CONTEXT
 import AuthContext from '../../contexts/auth';
-import './home.css';
+
+// SERVICES
 import HomeService from '../../services/home';
 
+// CSS
+import './home.css';
+
+// COMPONENTS
 import Welcome from '../../components/welcome';
 import Newsfeed from '../../components/newsfeed/newsfeed';
 
@@ -18,7 +26,7 @@ export default class Home extends React.Component {
   componentDidMount () {
     HomeService.getAllPosts()
     .then(allPosts => this.setState({ allPosts }))
-    .catch(err => this.setState({ error: "Trouble getting posts.", allPosts:[] }))
+    .catch(err => this.setState({ error: true, allPosts:[] }))
     
   }
   
