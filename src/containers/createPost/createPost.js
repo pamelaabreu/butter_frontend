@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import ImageService from '../../services/imgUpload';
+import CreatePostService from '../../services/createPost';
 import { Redirect } from 'react-router-dom';
 import './createPost.css';
 
@@ -31,16 +32,7 @@ export default class CreatePost extends React.Component {
         
         if(content_url){
             ImageService.imageUpload(content_url, this.context.firebaseUid)
-            .then(url => {
-                return axios.post('http://localhost:3000/post/', {
-                    user_posted_id: this.context.dbUid, 
-                    tag_id,
-                    content_url: url, 
-                    title,
-                    summary,
-                    caption
-                })
-            })
+            .then(url => CreatePostService.creatPost(this.context.dbUid, tag_id, url, title, summary, caption))
             .then(res => res.data.data)
             .then(data => this.props.history.push(`/viewPost/${data}`))
             .catch(err => {
