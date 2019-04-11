@@ -3,6 +3,7 @@ import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import ImageService from '../../services/imgUpload';
 import CreatePostService from '../../services/createPost';
+import TagService from '../../services/tag';
 import { Redirect } from 'react-router-dom';
 import './createPost.css';
 
@@ -43,8 +44,7 @@ export default class CreatePost extends React.Component {
     }
 
     componentDidMount () {
-        axios.get(`http://localhost:3000/tag/all`)
-        .then(res => this.setState({ tags: res.data }))
+        TagService.getAllTags().then(tags => this.setState({ tags }))
         .catch(err => this.setState({ tags: [] }))
     }
 
