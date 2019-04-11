@@ -1,8 +1,7 @@
 import React from 'react';
-import firebase from '../../firebase';
-import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import { Redirect, Link } from 'react-router-dom';
+import LoginService from '../../services/login';
 import './login.css';
 
 export default class Login extends React.Component {
@@ -23,14 +22,12 @@ export default class Login extends React.Component {
 
     const { email, password } = this.state;
     
-    firebase.auth().signInWithEmailAndPassword(email, password)
-      .then(response => response.user.uid)
-      .then(uid => axios.get(`http://localhost:3000/login/${uid}`))
-      .then(res => this.context.updateDbUid(res.data.id))
-      .catch(err => {
-        const { message } = err;
-        this.setState({ error: message });
-      })
+    LoginService.firebaseLogin(email, password)
+    .catch(err => {
+      const { message } = err;
+      this.setState({ error: message });
+    })
+ 
   }
 
 
