@@ -11,11 +11,24 @@ export default class LikeButton extends React.Component {
         isLiked :  null,
         postId : null,
         userId : null,
-        dbLikeId : null    
+        dbLikeId : null,
+        error: null    
     }
 
     createLike = () => {
-        console.log("Here")
+        LikeService.createLike(this.state.userId, this.state.postId)
+        .then(({likeId}) => {
+            this.state({ dbLikeId: likeId, isLiked: true })
+        })
+        .catch(err => this.setState({ error:true }))
+    }
+
+    deleteLike = () => {
+        LikeService.deleteLike(this.state.dbLikeId)
+        .then(data => {
+            this.setState({ dbLikeId: null, isLiked: false })
+        })
+        .catch(err => this.setState({ error: true }))
     }
 
     componentDidMount () {
@@ -45,7 +58,14 @@ export default class LikeButton extends React.Component {
                 })
             }
         })
+        .catch(err => this.setState({ error: true }))
 
+    }
+
+    componentDidUpdate () {
+        LikeService.getAllLikes(this.props.postInfo.id)
+        .then(likes => this.setState({ likes }))
+        .catch(err => this.setState({ error: true }))
     }
 
     render () {
@@ -53,7 +73,7 @@ export default class LikeButton extends React.Component {
             <div>
                 {
                     this.state.isLiked ? 
-                    <button >Unlike</button> 
+                    <button onClick={this.deleteLike}>Unlike</button> 
                     : 
                     <button onClick={this.createLike}>Like</button>
                 }
