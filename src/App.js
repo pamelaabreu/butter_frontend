@@ -15,6 +15,7 @@ import Signup from './containers/signup/signup';
 import Error404 from './components/error404';
 import CreatePost from './containers/createPost/createPost';
 import ViewPost from './containers/viewPost/viewPost';
+import Notifications from './containers/notifications/notifications';
 
 // ---- Context
 import AuthContext from './contexts/auth';
@@ -98,6 +99,7 @@ class App extends Component {
                 <Route path='/signup' exact component={Signup} />
                 <Route path='/createPost/:id' exact component={CreatePost} />
                 <Route path='/viewPost/:id' exact component={ViewPost} />
+                <Route path='/notifications' exact component={Notifications} />
                 <Route component={Error404} />
             </Switch>
           </div>

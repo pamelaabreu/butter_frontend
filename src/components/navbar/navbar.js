@@ -37,7 +37,7 @@ export default class Navbar extends React.Component {
                 </div>
 
                 <div className="navbarButton notification">
-                    <Link className='navbarText notification' to="/notifications/:id">n</Link>
+                    <Link className='navbarText notification' to="/notifications">n</Link>
                 </div>
             </div>
         </>
