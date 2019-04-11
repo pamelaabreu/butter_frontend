@@ -1,5 +1,5 @@
 import React from 'react';
-import { Redirect } from 'react-router-dom';
+import { Redirect, Link } from 'react-router-dom';
 import AuthContext from '../../contexts/auth';
 import NotificationService from '../../services/notifications';
 
@@ -28,17 +28,21 @@ export default class Notifications extends React.Component {
         const displayNotifs = this.state.notifs.map((e, i) => {
             if(e.notification_type.toLowerCase() === 'liked'){
                 return <div key={i}>
-                    <p>{e.username} {e.notification_type} your photo.</p>
-                    <div className='userProfileImg' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+                    <p><Link to={"/user/" + e.username}>{e.username}</Link> {e.notification_type} your photo.</p>
+                    <Link to={"/viewPost/" + e.post_action_id} >
+                        <div className='userProfileImg' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+                    </Link>
                 </div>
             } else if (e.notification_type.toLowerCase() === 'commented'){
                 return <div key={i}>
-                <p>{e.username} {e.notification_type} on your photo.</p>
-                <div className='userProfileImg' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+                <p><Link to={"/user/" + e.username}>{e.username}</Link> {e.notification_type} on your photo.</p>
+                <Link to={"/viewPost/" + e.post_action_id} >
+                        <div className='userProfileImg' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+                </Link>
             </div>
             } else if (e.notification_type.toLowerCase() === 'followed'){
                 return <div key={i}> 
-                <p>{e.username} {e.notification_type} followed you.</p>
+                <p><Link to={"/user/" + e.username}>{e.username}</Link> {e.notification_type} followwed you.</p>
             </div>
             }
         })
