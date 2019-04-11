@@ -14,4 +14,8 @@ LikeService.createLike = (user_like_id, post_like_id) => {
     return axios.post(`http://localhost:3000/like/`, {user_like_id, post_like_id}).then(res => res.data)
 }
 
+LikeService.deleteLike = (likeId) => {
+    return axios.delete(`http://localhost:3000/like/${likeId}`).then(res => res.data)
+}
+
 export default LikeService;
