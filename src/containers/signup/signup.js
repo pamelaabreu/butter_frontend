@@ -45,9 +45,9 @@ export default class Signup extends React.Component {
         .then(uid => ImageService.imageUpload(profileImage, uid), err => {
           // this is err for the imageService promise only
         })
-        .then(url => SignupService.createDbUser(birthname, username, email, firebase_uid, url, birthday, joining_reason))
+        .then(url => SignupService.createDbUser(birthname, username, email, firebase_uid, url, birthday, joiningReason))
         .then(res => res.data.data)
-        .then(data => this.context.updateDbUid(data))
+        .then(dbuid => this.context.updateDbUid(dbuid))
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });
