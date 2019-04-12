@@ -1,10 +1,13 @@
+import dbConnect from './dbConnect';
+
 import axios from 'axios';
+
 const FollowService = {};
 
 FollowService.checkUserFollowing = (userFollowerId, userFollowingName) => {
-    const getUserFollowingId = axios.get(`http://localhost:3000/user/username/${userFollowingName}/`).then(res => res.data.id)
+    const getUserFollowingId = axios.get(`${dbConnect}/user/username/${userFollowingName}/`).then(res => res.data.id)
     
-    const checkFollowing = getUserFollowingId.then(userFollowingId => axios.get(`http://localhost:3000/follow/checkFollowing/${userFollowerId}/${userFollowingId}`).then(res => res.data))
+    const checkFollowing = getUserFollowingId.then(userFollowingId => axios.get(`${dbConnect}/follow/checkFollowing/${userFollowerId}/${userFollowingId}`).then(res => res.data))
 
     return Promise.all([getUserFollowingId, checkFollowing]).then(allData => {
         const userFollowingId = allData[0];
@@ -17,16 +20,16 @@ FollowService.checkUserFollowing = (userFollowerId, userFollowingName) => {
             return { userFollowerId, userFollowingId, dbFollowId: null, followData:{}, following: false }
         }
     })
-}
+};
 
 FollowService.createFollow = (userFollowerId, userFollowingId) => {
-    return axios.post('http://localhost:3000/follow/', { user_follower_id: userFollowerId, user_following_id: userFollowingId })
+    return axios.post(`${dbConnect}/follow/`, { user_follower_id: userFollowerId, user_following_id: userFollowingId })
     .then(res => res.data.followId)
-}
+};
 
 FollowService.deleteFollow = dbFollowId => {
-    return axios.delete(`http://localhost:3000/follow/${dbFollowId}`)
+    return axios.delete(`${dbConnect}/follow/${dbFollowId}`)
     .then(res => res.data)
-}
+};
 
 export default FollowService;

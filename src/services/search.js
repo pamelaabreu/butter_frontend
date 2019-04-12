@@ -1,9 +1,12 @@
+import dbConnect from './dbConnect';
+
 import axios from 'axios';
+
 const SearchService = {};
 
 SearchService.getFollowData = (user, id) => {
-    const getFollowers = axios.get(`http://localhost:3000/follow/${id}/readAllFollowers`).then(res => res.data)
-    const getFollowings = axios.get(`http://localhost:3000/follow/${id}/readAllFollowings`).then(res => res.data)
+    const getFollowers = axios.get(`${dbConnect}/follow/${id}/readAllFollowers`).then(res => res.data)
+    const getFollowings = axios.get(`${dbConnect}/follow/${id}/readAllFollowings`).then(res => res.data)
 
     return Promise.all([getFollowers, getFollowings]).then(allData => {
         const usersFollowers = allData[0];
@@ -14,7 +17,7 @@ SearchService.getFollowData = (user, id) => {
 };
 
 SearchService.getSearchResults = (input) => {
-    return axios.get('http://localhost:3000/user/all')
+    return axios.get(`${dbConnect}/user/all`)
         .then(res => res.data )
         .then(data => {
             return data.filter((e) => {

@@ -1,16 +1,16 @@
-// REACT
+/*   REACT   */
 import React from 'react';
 
-// CONTEXT
+/*   CONTEXT   */
 import AuthContext from '../../contexts/auth';
 
-// SERVICES
+/*   SERVICE   */
 import HomeService from '../../services/home';
 
-// CSS
+/*   CSS   */
 import './home.css';
 
-// COMPONENTS
+/*   COMPONENTS   */
 import Welcome from '../../components/welcome';
 import Newsfeed from '../../components/newsfeed/newsfeed';
 
@@ -38,12 +38,7 @@ export default class Home extends React.Component {
           ({user}) => {
             if (user) {
               return <>
-              <div className='experiment'>
-                <div className='blank'>
-                  <div className='arrowDown'></div>
-                </div>
                 <Newsfeed allPosts={this.state.allPosts}/>
-              </div>
             </>
             } else {
               return <Welcome />

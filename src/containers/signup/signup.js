@@ -1,8 +1,7 @@
 import React from 'react';
-import firebase from '../../firebase';
-import axios from 'axios';
 import AuthContext from '../../contexts/auth';
 import ImageService from '../../services/imgUpload';
+import SignupService from '../../services/signup';
 import { Redirect, Link } from 'react-router-dom';
 import './signup.css';
 
@@ -39,26 +38,16 @@ export default class Signup extends React.Component {
     let firebase_uid = null;
   
     if(this.validateForms()){
-      firebase.auth().createUserWithEmailAndPassword(email, password)
+      SignupService.createFirebaseUser(email, password)
         .then(response => firebase_uid = response.user.uid, err => {
           // this is err for the firebase promise only
         })
         .then(uid => ImageService.imageUpload(profileImage, uid), err => {
           // this is err for the imageService promise only
         })
-        .then((url) => {
-           return axios.post('http://localhost:3000/user/', {
-            birthname: birthname, 
-            username: username, 
-            email: email, 
-            firebase_uid: firebase_uid, 
-            profile_img: url,
-            birthday: birthday, 
-            joining_reason: joiningReason
-          })
-        })
+        .then(url => SignupService.createDbUser(birthname, username, email, firebase_uid, url, birthday, joiningReason))
         .then(res => res.data.data)
-        .then(data => this.context.updateDbUid(data))
+        .then(dbuid => this.context.updateDbUid(dbuid))
         .catch(err => {
           const { message } = err;
           this.setState({ firebaseError: message });

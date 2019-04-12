@@ -1,6 +1,7 @@
+/*   REACT   */
 import React from 'react';
 
-export default (props) => {
+const Error404 = (props) => {
   const { location } = props;
   return (
     <div>
@@ -10,4 +11,6 @@ export default (props) => {
       </div>
     </div>
   );
-}
+};
+
+export default Error404;

@@ -1,9 +1,14 @@
+/*   REACT   */
 import React from 'react';
 import { Link } from 'react-router-dom';
+
+/*   CONTEXT  */
 import AuthContext from '../../contexts/auth';
+
+/*   CSS   */
 import './navbar.css';
 
-export default class Navbar extends React.Component {
+class Navbar extends React.Component {
     static contextType = AuthContext;
 
     render () {
@@ -41,6 +46,7 @@ export default class Navbar extends React.Component {
                 </div>
             </div>
         </>
+        
         return (
                 <AuthContext.Consumer>
                     {
@@ -50,3 +56,5 @@ export default class Navbar extends React.Component {
         )
     }
 }
+
+export default Navbar;
