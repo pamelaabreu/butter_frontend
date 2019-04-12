@@ -1,12 +1,12 @@
 import React from 'react';
-import firebase from '../../firebase';
 import { Link } from 'react-router-dom';
+import LogoutService from '../../services/logout';
 import './logout.css';
 
 export default class Logout extends React.Component {
 
   componentDidMount() {
-    firebase.auth().signOut()
+    LogoutService.logout()
   }
 
   render() {
