@@ -1,11 +1,11 @@
-// REACT
+/*   REACT   */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// CSS
+/*   CSS   */
 import './newsfeed.css';
 
-// Components
+/*   COMPONENTS   */
 import LikeButton from '../../containers/likeButton/likeButton';
 
 const Newsfeed = (props) => {

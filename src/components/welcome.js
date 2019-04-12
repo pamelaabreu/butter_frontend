@@ -1,7 +1,8 @@
+/*   REACT   */
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-export default (props) => {
+const Welcome = (props) => {
     return <>
     <div className='homeBackground'>
       <div className='welcomeBox'>
@@ -21,4 +22,6 @@ export default (props) => {
       </div>
     </div>
   </>
-}
+};
+
+export default Welcome;
