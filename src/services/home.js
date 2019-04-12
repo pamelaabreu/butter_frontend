@@ -22,7 +22,7 @@ HomeService.getAllFollowingsPosts = (dbUid) => {
 };
 
 HomeService.getAllPosts = () => {
- const allPosts = axios.get(`${dbConnect}/post/allPosts`).then(({data}) => data.slice(0).reverse())
+ const allPosts = axios.get(`${dbConnect}/post/allPosts/all`).then(({data}) => data.slice(0).reverse())
 
  const getUsernameForPosts = allPosts.then(posts => {
    return posts.map(e => {
