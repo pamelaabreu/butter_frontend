@@ -30,8 +30,8 @@ export default class UserProfile extends React.Component {
         const sign = UserService.getHoroscopeSign(userInfo.birthday);
 
         const displayPosts = userPosts.map((e, i) => {
-            return <Link to={"/viewPost/" + e.id}>
-                    <div key={i} className='userProfilePosts' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
+            return <Link key={i} to={"/viewPost/" + e.id}>
+                    <div className='userProfilePosts' style={{backgroundImage:"url(" + e.content_url + ")"}}></div>
                 </Link>
         });
 
