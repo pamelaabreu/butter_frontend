@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
-import firebase from './firebase';
-import axios from 'axios';
+
+/*   CSS   */
 import './app.css';
 
-// ---- Pages
+/*   SERVICES   */
+import LoginService from './services/login';
+import UserService from './services/user';
+import firebase from './firebase';
+
+
+/*   PAGES   */
 import UserProfile from './containers/userProfile/userProfile';
 import Navbar from './components/navbar/navbar';
 import Searchbar from './containers/searchbar/searchbar';
@@ -17,7 +23,7 @@ import CreatePost from './containers/createPost/createPost';
 import ViewPost from './containers/viewPost/viewPost';
 import Notifications from './containers/notifications/notifications';
 
-// ---- Context
+/*   CONTEXT   */
 import AuthContext from './contexts/auth';
 
 class App extends Component {
@@ -32,35 +38,25 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.unsubscribe = firebase.auth().onAuthStateChanged(async user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
       if(user){
-
-        // Gets user token
-        const firebaseToken = firebase.auth().currentUser.getIdToken(false)
-          .then(token => token, () => null)
-
-        // Gets user dbUid
-        const getDbUid = firebaseToken
-          .then(token => axios.get(`http://localhost:3000/login/${user.uid}`))
-          .then(res => res.data.id, err => null)
-        
-        // Gets user dbUser
-        const getDbUser = getDbUid
-          .then(dbUid => axios.get(`http://localhost:3000/user/${dbUid}`))
-          .then(res => res.data, err => null)
-
-        Promise.all([firebaseToken, getDbUid, getDbUser]).then(all => {
-          const [token, dbUid, dbUser] = all;
-          this.setState({
-            token,
-            dbUid,
-            dbUser,
-            user, 
-            firebaseUid: user.uid, 
-            userEmail: user.email,
-          });
-        });
-
+        firebase.auth().currentUser.getIdToken(false)
+        .then(token => {
+          this.setState({ user, token, firebaseUid: user.uid, userEmail: user.email, }, () => {
+            if(this.state.dbUid === null){
+              LoginService.login(user.uid)
+              .then(dbUid => {
+                  return UserService.getUserById(dbUid)
+                },err => null)
+              .then(userInfo => {
+                this.setState({
+                  dbUid: userInfo.id,
+                  dbUser: userInfo,
+                });
+              })
+            }
+          })
+        })
       }
       else {
         this.setState({ user: null })
@@ -73,7 +69,10 @@ class App extends Component {
     this.unsubscribe();
   }
  
-  updateDbUid = dbUid => this.setState({ dbUid })
+  updateDbUid = dbUid => {
+    UserService.getUserById(dbUid)
+      .then(userInfo => this.setState({ dbUid, dbUser: userInfo }))
+  }
 
   render() {
     return (
