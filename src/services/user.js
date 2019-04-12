@@ -4,6 +4,8 @@ import axios from 'axios';
 
 const UserService = {};
 
+UserService.getUserById = dbUid => axios.get(`${dbUid}/user/${dbUid}`).then(res => res.data)
+
 UserService.getUsersInfo = (dbUsername) => {
     const getUserData = axios.get(`${dbConnect}/user/username/${dbUsername}/`).then(res => res.data)
 
