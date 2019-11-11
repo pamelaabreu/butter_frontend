@@ -42,7 +42,7 @@ export default class Notifications extends React.Component {
             </div>
             } else if (e.notification_type.toLowerCase() === 'followed'){
                 return <div key={i}> 
-                <p><Link to={"/user/" + e.username}>{e.username}</Link> {e.notification_type} followwed you.</p>
+                <p><Link to={"/user/" + e.username}>{e.username}</Link> {e.notification_type} you.</p>
             </div>
             }
         })

@@ -19,10 +19,6 @@ class Navbar extends React.Component {
                     <Link className='navbarText newsfeed' to="/">h</Link>
                 </div>
             
-                <div className="navbarButton explore">
-                    <Link className='navbarText explore' to="/explore">e</Link>
-                </div>
-            
                 <div className="navbarButton search">
                     <Link className='navbarText search' to="/search">s</Link>
                 </div>

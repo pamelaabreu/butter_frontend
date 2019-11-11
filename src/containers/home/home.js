@@ -38,7 +38,7 @@ export default class Home extends React.Component {
           ({user}) => {
             if (user) {
               return <>
-                <Newsfeed allPosts={this.state.allPosts}/>
+              <Newsfeed allPosts={this.state.allPosts}/>
             </>
             } else {
               return <Welcome />
