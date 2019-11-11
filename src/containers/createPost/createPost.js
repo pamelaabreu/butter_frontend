@@ -1,12 +1,18 @@
 import React from 'react';
-import AuthContext from '../../contexts/auth';
+import { Redirect } from 'react-router-dom';
+
+/*   SERVICES   */
 import ImageService from '../../services/imgUpload';
 import CreatePostService from '../../services/createPost';
 import TagService from '../../services/tag';
-import { Redirect } from 'react-router-dom';
+
+/*   CONTEXT   */
+import AuthContext from '../../contexts/auth';
+
+/*   CSS   */
 import './createPost.css';
 
-export default class CreatePost extends React.Component {
+class CreatePost extends React.Component {
     static contextType = AuthContext;
 
     state = {
@@ -68,14 +74,6 @@ export default class CreatePost extends React.Component {
                 <textarea className='createPostInput' name='caption' placeholder='Sum this post in six words...' onChange={this.handleChange}></textarea>
             </form>
         </div>
-        const tagImg = this.state.tags.map((e, i) => {
-            return (
-                <div className='dropdown-content' key={i} style={{backgroundImage:`url(${e.image_url})`, display:'block', height:'100px', width:'100px', zIndex:'9999'}}>
-                    {/* <img src={e.image_url} alt={e.topic_name}/> */}
-                    {/* <p className='dropdown-style'>{e.image_url}</p> */}
-                </div>
-            );
-        });
         const tagButtons = this.state.tags.map((e, i, a) => {
             return (
                 <>
@@ -124,3 +122,5 @@ export default class CreatePost extends React.Component {
         );   
     }
 }
+
+export default CreatePost;

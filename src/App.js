@@ -1,14 +1,10 @@
 import React, { Component } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-/*   CSS   */
-import './app.css';
-
 /*   SERVICES   */
 import LoginService from './services/login';
 import UserService from './services/user';
 import firebase from './firebase';
-
 
 /*   PAGES   */
 import UserProfile from './containers/userProfile/userProfile';
@@ -26,6 +22,9 @@ import Notifications from './containers/notifications/notifications';
 /*   CONTEXT   */
 import AuthContext from './contexts/auth';
 
+/*   CSS   */
+import './app.css';
+
 class App extends Component {
 
   state = {
@@ -38,9 +37,9 @@ class App extends Component {
   }
 
   componentDidMount () {
-    this.unsubscribe = firebase.auth().onAuthStateChanged(user => {
+    this.unsubscribe = firebase.auth().onAuthStateChanged(async user => {
       if(user){
-        firebase.auth().currentUser.getIdToken(false)
+        await firebase.auth().currentUser.getIdToken(false)
         .then(token => {
           this.setState({ user, token, firebaseUid: user.uid, userEmail: user.email, }, () => {
             if(this.state.dbUid === null){
